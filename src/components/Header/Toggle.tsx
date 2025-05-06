@@ -1,6 +1,6 @@
 "use client";
-import MoonIcon from "@/icons/MoonIcon";
-import SunIcon from "@/icons/SunIcon";
+import MoonIcon from "@/libs/icons/MoonIcon";
+import SunIcon from "@/libs/icons/SunIcon";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
