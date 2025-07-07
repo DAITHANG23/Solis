@@ -1,6 +1,6 @@
 "use client";
-import MoonIcon from "@/libs/icons/MoonIcon";
-import SunIcon from "@/libs/icons/SunIcon";
+import MoonIcon from "../../libs/icons/MoonIcon";
+import SunIcon from "../../libs/icons/SunIcon";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -50,8 +50,9 @@ const Toggles = () => {
 
 const SliderToggle = ({ selected, setSelected }: SliderToggle) => {
   return (
-    <div className="relative flex w-fit items-center rounded-full not-prose">
+    <div className="not-prose relative flex w-fit items-center rounded-full">
       <button
+        type="button"
         className={`${TOGGLE_CLASSES} ${
           selected === "light" ? "text-white" : "text-slate-300"
         }`}
@@ -63,6 +64,7 @@ const SliderToggle = ({ selected, setSelected }: SliderToggle) => {
         <span className="relative z-10">Light</span>
       </button>
       <button
+        type="button"
         className={`${TOGGLE_CLASSES} ${
           selected === "dark" ? "text-white" : "text-slate-800"
         }`}
