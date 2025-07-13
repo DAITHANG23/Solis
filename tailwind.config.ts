@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 import type { Config } from "tailwindcss";
-import Typography from "./src/theme/__Theme.Typography";
 export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -27,11 +26,6 @@ export default {
         "cta-active": "rgba(var(--cta-active))",
         "cta-text": "rgba(var(--cta-text))",
         grape: "rgba(var(--grape))",
-      },
-      typography: {
-        DEFAULT: {
-          css: Typography,
-        },
       },
     },
   },
