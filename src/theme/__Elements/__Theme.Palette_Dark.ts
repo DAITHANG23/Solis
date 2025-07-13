@@ -1,4 +1,4 @@
-import type { PaletteOptions } from "@mui/material/styles/createPalette";
+import type { PaletteOptions } from "@mui/material/styles";
 
 import * as Colors from "@/src/utils/__Theme.Color";
 

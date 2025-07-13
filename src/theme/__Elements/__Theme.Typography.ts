@@ -1,5 +1,7 @@
 import type { Palette } from "@mui/material";
-import type { TypographyOptions as MuiTypographyOptions } from "@mui/material/styles/createTypography";
+import type { ThemeOptions } from "@mui/material/styles";
+
+type MuiTypographyOptions = NonNullable<ThemeOptions["typography"]>;
 
 declare module "@mui/material/styles" {
   interface TypographyVariantsOptions {
