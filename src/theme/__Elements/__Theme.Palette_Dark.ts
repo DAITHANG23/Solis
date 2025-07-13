@@ -1,0 +1,111 @@
+import type { PaletteOptions } from "@mui/material/styles";
+
+import * as Colors from "@/src/utils/__Theme.Color";
+
+export default {
+  mode: "dark",
+  common: {
+    black: Colors.black,
+    white: Colors.white,
+    ghostWhite: Colors.ghostWhite,
+    link: Colors.link,
+    cta: Colors.cta,
+    hover: Colors.hover,
+    disabled: Colors.ghostDisabled,
+    selected: Colors.selected,
+  },
+  primary: {
+    main: "#5BE49B",
+    "400": Colors.p400,
+    "300": Colors.p300,
+    "200": Colors.p200,
+    "100": Colors.p100,
+    "50": Colors.p50,
+  },
+  secondary: {
+    main: Colors.secondary,
+    "400": Colors.se400,
+    "300": Colors.se300,
+    "200": Colors.se200,
+    "100": Colors.se100,
+  },
+  tertiary: {
+    main: Colors.tertiary,
+    "400": Colors.t400,
+    "300": Colors.t300,
+    "200": Colors.t200,
+    "100": Colors.t100,
+  },
+  info: {
+    main: Colors.info,
+    "400": Colors.i400,
+    "300": Colors.i300,
+    "200": Colors.i200,
+    "100": Colors.i100,
+  },
+  success: {
+    main: Colors.success,
+    "400": Colors.s400,
+    "300": Colors.s300,
+    "200": Colors.s200,
+    "100": Colors.s100,
+    "50": Colors.s50,
+    "40": Colors.s40,
+    "20": Colors.s20,
+    "10": Colors.s10,
+  },
+  error: {
+    main: Colors.error,
+    "400": Colors.e400,
+    "300": Colors.e300,
+    "200": Colors.e200,
+    "100": Colors.e100,
+    "50": Colors.e50,
+    "40": Colors.e40,
+    "20": Colors.e20,
+    "10": Colors.e10,
+  },
+  warning: {
+    main: Colors.warning,
+    "400": Colors.w400,
+    "300": Colors.w300,
+    "200": Colors.w200,
+    "100": Colors.w100,
+    "50": Colors.w50,
+    "40": Colors.w40,
+    "20": Colors.w20,
+    "10": Colors.w10,
+  },
+  background: {
+    default: Colors.darkBackground,
+    link: Colors.link,
+    black: Colors.black,
+  },
+  grey: {
+    "90": Colors.grey90,
+    "300": Colors.grey300,
+    "400": Colors.grey400,
+    "500": Colors.grey500,
+    "600": Colors.grey600,
+    "700": Colors.grey700,
+    "800": Colors.grey800,
+    "900": Colors.grey900,
+  },
+  text: {
+    primary: Colors.white,
+    secondary: Colors.black,
+  },
+  action: {
+    disabledBackground: Colors.ghostDisabled,
+  },
+
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 768,
+      md: 1025,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+} as PaletteOptions;
