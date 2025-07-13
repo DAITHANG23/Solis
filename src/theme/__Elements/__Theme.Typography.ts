@@ -1,7 +1,5 @@
 import type { Palette } from "@mui/material";
-import type { ThemeOptions } from "@mui/material/styles";
-
-type MuiTypographyOptions = NonNullable<ThemeOptions["typography"]>;
+import type { TypographyVariantsOptions } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
   interface TypographyVariantsOptions {
@@ -33,8 +31,9 @@ declare module "@mui/material/Typography" {
   }
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (palette: Palette): MuiTypographyOptions => ({
+const Typography: (palette: Palette) => TypographyVariantsOptions = (
+  palette
+) => ({
   h1: {
     fontStyle: "normal",
     fontWeight: 700,
@@ -138,3 +137,5 @@ export default (palette: Palette): MuiTypographyOptions => ({
     minWidth: "176px",
   },
 });
+
+export default Typography;
