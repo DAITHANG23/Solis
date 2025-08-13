@@ -32,7 +32,7 @@ declare module "@mui/material/Typography" {
 }
 
 const Typography: (palette: Palette) => TypographyVariantsOptions = (
-  palette
+  palette,
 ) => ({
   h1: {
     fontStyle: "normal",

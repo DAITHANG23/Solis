@@ -1,6 +1,6 @@
 import type { PaletteOptions } from "@mui/material/styles";
 
-import * as Colors from "@/src/utils/__Theme.Color";
+import * as Colors from "@/utils/__Theme.Color";
 
 export default {
   mode: "dark",

@@ -10,6 +10,9 @@
       "complexity": {
         "useSimplifiedLogicExpression": "warn"
       },
+      "style": {
+        "useImportType": "off"
+      },
       "nursery": {
         "useSortedClasses": "warn"
       },

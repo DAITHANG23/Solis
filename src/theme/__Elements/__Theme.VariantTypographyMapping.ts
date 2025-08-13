@@ -1,4 +1,4 @@
-import * as Colors from "@/src/utils/__Theme.Color";
+import * as Colors from "@/utils/__Theme.Color";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
