@@ -1,0 +1,18 @@
+{
+  "settings": {
+    "title": "Cài đặt",
+    "themeMode": "Theme Mode",
+    "light": "Sáng",
+    "dark": "Tối",
+    "english": "English",
+    "vietnamese": "Vietnamese",
+    "yourProfile": "Hồ sơ của bạn",
+    "edit": "Edit",
+    "detail": "Detail",
+    "delete": "Delete"
+  },
+  "button": {
+    "save": "Lưu",
+    "cancel": "Hủy"
+  }
+}

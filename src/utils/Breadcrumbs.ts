@@ -1,5 +1,5 @@
-import type { BreadcrumbsMap } from "@/src/types/Header.types";
-import * as feature from "@/src/utils/Features";
+import type { BreadcrumbsMap } from "@/types/Header.types";
+import * as feature from "@/utils/Features";
 
 const breadcrumbsMap: BreadcrumbsMap = {
   [feature.HOME]: {

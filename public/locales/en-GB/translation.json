@@ -1,0 +1,18 @@
+{
+  "settings": {
+    "title": "Settings",
+    "themeMode": "Theme Mode",
+    "light": "Light",
+    "dark": "Dark",
+    "english": "English",
+    "vietnamese": "Vietnamese",
+    "yourProfile": "Your Profile",
+    "edit": "Edit",
+    "detail": "Detail",
+    "delete": "Delete"
+  },
+  "button": {
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
