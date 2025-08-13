@@ -2,10 +2,6 @@ import { render, screen } from "@testing-library/react";
 import Header from "../Header/Header";
 
 // Mock Toggles component để kiểm tra mà không cần test logic bên trong nó
-// eslint-disable-next-line react/display-name
-jest.mock("../Header/Toggle", () => () => (
-  <div data-testid="toggles-mock">Toggles Component</div>
-));
 
 describe("HeaderWithToggles", () => {
   it("renders the header title", () => {
