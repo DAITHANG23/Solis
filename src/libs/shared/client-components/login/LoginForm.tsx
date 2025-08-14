@@ -100,7 +100,7 @@ export const LoginForm = () => {
   return (
     <StyledContainerLoginForm>
       <StyledImageLogo>
-        <Image src={"/assets/images/logo.png"} alt="logo" fill />
+        <Image src={"/assets/images/logo2.png"} alt="logo" fill />
       </StyledImageLogo>
       <StyledContentContainer>
         <Typography variant="h5">{t("login.content")}</Typography>
