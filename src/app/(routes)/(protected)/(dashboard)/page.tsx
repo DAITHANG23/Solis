@@ -1,3 +1,3 @@
 export default function Index() {
-  return <>Welcome Tiximax</>;
+  return <>Welcome Dominique Restaurants</>;
 }

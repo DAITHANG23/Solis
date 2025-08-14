@@ -6,8 +6,9 @@ import Palette from "./__Elements/__Theme.Palette";
 import DarkPalette from "./__Elements/__Theme.Palette_Dark";
 import VariantTypographyMapping from "./__Elements/__Theme.VariantTypographyMapping";
 
-export const BlogThemeOptions = createTheme({
+export const DashboardThemeOptions = createTheme({
   palette: Palette,
+  spacing: 4,
   typography: Typography,
   components: VariantTypographyMapping,
   cssVariables: {
@@ -24,4 +25,4 @@ export const BlogThemeOptions = createTheme({
   },
 });
 
-export const theme = BlogThemeOptions;
+export const theme = DashboardThemeOptions;
