@@ -8,3 +8,5 @@ export * from "./CreditCardIcon";
 export * from "./SettingIcon";
 export * from "./NoData";
 export * from "./WarehouseIcon";
+export * from "./PurchaseListIcon";
+export * from "./UsersIcon";

@@ -26,36 +26,41 @@ import {
   SearchIcon,
   UserRoundIcon,
   WarehouseIcon,
+  HouseIcon,
+  UsersIcon,
+  ShoppingCartIcon,
+  ClipboardListIcon,
 } from "lucide-react";
-import { HouseIcon, MenuArrowIcon, ProfileIcon } from "@/libs/assets";
+import { MenuArrowIcon, ProfileIcon, SettingIcon } from "@/libs/assets";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/constants";
 import { DropdownListType } from "@/types/common";
-import { SettingIcon, ShoppingCartIcon } from "@/libs/assets";
-import { UsersIcon } from "@/libs/assets/UsersIcon";
 import { logout } from "@/libs/redux/authSlice";
 import { useAppDispatch } from "@/libs/redux/hooks";
 import useConfirmation from "@/features/hooks/useConfirmation";
-import { PurchaseListIcon } from "@/libs/assets/PurchaseListIcon";
+import Link from "next/link";
 
 interface MenuList {
   icon: React.ReactNode;
   title: string;
   href: string;
+  value: string;
 }
 interface StyledBoxDrawerProps extends BoxProps {
   isHideSideBar: boolean;
 }
-const drawerWidth = 240;
+const drawerWidth = 288;
 
 const StyledToolbar = styled(Toolbar)(() => ({
   textAlign: "center",
 }));
 
-const StyledImageContainer = styled("div")(() => ({
+const StyledImageContainer = styled(Link)(() => ({
   position: "relative",
-  width: "200px",
-  height: "50px",
+  width: "160px",
+  height: "40px",
+  textAlign: "center",
+  margin: "0 auto",
 }));
 
 const StyledToolbarContainer = styled(Toolbar)(() => ({
@@ -179,6 +184,7 @@ const StyledDrawerPermanent = styled(Drawer, {
   "& .MuiDrawer-paper": {
     boxSizing: "border-box",
     width: isHideSideBar ? "60px" : drawerWidth,
+    backgroundColor: theme.palette.primary.main,
   },
 }));
 
@@ -203,16 +209,37 @@ const AVATAR_DROPDOWN_OPTIONS: Array<DropdownListType> = [
 ];
 
 const MENU_LIST = [
-  { icon: <HouseIcon />, title: "Dashboard", href: "/" },
-  { icon: <UsersIcon />, title: "Customers", href: "/customers" },
-  { icon: <ShoppingCartIcon />, title: "Orders", href: "/orders" },
-  { icon: <CreditCardIcon />, title: "Payments", href: "/payments" },
+  { icon: <HouseIcon />, title: "Dashboard", href: "/", value: "dashboard" },
   {
-    icon: <PurchaseListIcon />,
+    icon: <UsersIcon />,
+    title: "Customers",
+    href: "/customers",
+    value: "customers",
+  },
+  {
+    icon: <ShoppingCartIcon />,
+    title: "Orders",
+    href: "/orders",
+    value: "orders",
+  },
+  {
+    icon: <CreditCardIcon />,
+    title: "Payments",
+    href: "/payments",
+    value: "payments",
+  },
+  {
+    icon: <ClipboardListIcon />,
     title: "Purchase waiting list",
     href: "/purchase-waiting-list",
+    value: "purchaseWaitingList",
   },
-  { icon: <WarehouseIcon />, title: "Warehouse", href: "/warehouses" },
+  {
+    icon: <WarehouseIcon />,
+    title: "Warehouse",
+    href: "/warehouses",
+    value: "warehouses",
+  },
 ] as Array<MenuList>;
 
 interface LayoutMainProps {
@@ -225,6 +252,8 @@ export const LayoutMain = (props: LayoutMainProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isHideSideBar, setIsHideSideBar] = useState(false);
+  const [itemSidebarValue, setItemSidebarValue] = useState<string>("dashboard");
+
   const showConfirmation = useConfirmation();
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -262,14 +291,15 @@ export const LayoutMain = (props: LayoutMainProps) => {
     setIsHideSideBar((prev) => !prev);
   };
 
-  const handleClickListItem = (url: string) => {
+  const handleClickListItem = (url: string, value: string) => {
+    setItemSidebarValue(value);
     router.push(url);
   };
 
   const drawer = (
     <div>
       <StyledToolbar>
-        <StyledImageContainer>
+        <StyledImageContainer href={`${ROUTES.HOME.INDEX}`}>
           <Image
             src={`${isHideSideBar ? "/favicon.ico" : "/assets/images/logo.png"}`}
             alt="logo"
@@ -280,12 +310,42 @@ export const LayoutMain = (props: LayoutMainProps) => {
       <Divider />
       <List>
         {MENU_LIST.map((item) => (
-          <ListItem key={item.title} disablePadding>
-            <ListItemButton onClick={() => handleClickListItem(item.href)}>
-              <ListItemIcon sx={{ minWidth: isHideSideBar ? "24px" : "56px" }}>
+          <ListItem
+            key={item.title}
+            disablePadding
+            sx={{
+              "& .MuiListItemButton-root": {
+                padding: `16px ${isHideSideBar ? "16px" : "32px"}`,
+                margin: "0 auto",
+                borderLeft: `${itemSidebarValue === item.value ? "6px solid #76B5FF" : "none"}`,
+                color: itemSidebarValue === item.value ? "white" : "black",
+                "&:hover": { backgroundColor: "#e53963" },
+                backgroundColor:
+                  itemSidebarValue === item.value ? "#e53963" : "#EF476F",
+              },
+            }}
+          >
+            <ListItemButton
+              onClick={() => handleClickListItem(item.href, item.value)}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: isHideSideBar ? "24px" : "40px",
+                  color: itemSidebarValue === item.value ? "white" : "black",
+                }}
+              >
                 {item.icon}
               </ListItemIcon>
-              {!isHideSideBar && <ListItemText primary={item.title} />}
+              {!isHideSideBar && (
+                <ListItemText
+                  primary={item.title}
+                  sx={{
+                    "& .MuiListItemText-primary": {
+                      fontSize: "15px !important",
+                    },
+                  }}
+                />
+              )}
             </ListItemButton>
           </ListItem>
         ))}

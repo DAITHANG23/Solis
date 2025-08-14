@@ -33,3 +33,9 @@ declare module "@mui/material/styles" {
     background?: Partial<TypeBackground>;
   }
 }
+
+export interface LanguageListType {
+  name: string;
+  value: string;
+  icon: string;
+}
