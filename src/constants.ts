@@ -1,3 +1,5 @@
+import { LanguageListType } from "./types";
+
 export const API_VERSION_V1 = "/api/v1";
 
 export const ROUTES = {
@@ -33,3 +35,16 @@ export const SIDEBAR = {
     TO: `/${ROUTES.HOME.INDEX}`,
   },
 };
+
+export const LANGUAGE_OPTIONS: Array<LanguageListType> = [
+  {
+    name: "vietnamese",
+    value: "vi-VN",
+    icon: "https://purecatamphetamine.github.io/country-flag-icons/3x2/VN.svg",
+  },
+  {
+    name: "english",
+    value: "en-GB",
+    icon: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
+  },
+];

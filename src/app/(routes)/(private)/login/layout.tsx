@@ -1,4 +1,4 @@
-// import { HeaderLogin } from "@/libs/shared/components/client-components/login";
+import { HeaderLogin } from "@/libs/shared/client-components/login/HeaderLogin";
 import { Box } from "@mui/material";
 
 export default function AuthLayout({
@@ -8,7 +8,7 @@ export default function AuthLayout({
 }) {
   return (
     <>
-      {/* <HeaderLogin /> */}
+      <HeaderLogin />
       <Box
         sx={{
           display: "flex",
