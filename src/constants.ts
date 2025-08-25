@@ -3,17 +3,15 @@ import { LanguageListType } from "./types";
 export const API_VERSION_V1 = "/api/v1";
 
 export const ROUTES = {
-  HOME: { INDEX: "/" },
-  ABOUT: { INDEX: "/about" },
-  CONCEPTS: { INDEX: "/restaurant-concept" },
-  BLOG: { INDEX: "/blog" },
+  DASHBOARD: { INDEX: "/" },
+  CONCEPTS: { INDEX: "/concepts" },
+  CLIENTS: { INDEX: "/clients" },
+  BOOKINGS: { INDEX: "/reservations" },
+  RESTAURANTS: { INDEX: "/restaurants" },
+  STAFFS: { INDEX: "/staffs" },
   PROFILE: { INDEX: "/your-profile" },
-  BOOKING: { INDEX: "/reservation-history" },
-  FAVORITE_CONCEPTS: {
-    INDEX: "/favorites-concepts",
-    FAVORITE_RESTAURANTS: "favorite-restaurants",
-    CHECKIN_RESTAURANTS: "checkin-restaurants",
-  },
+  FINANCES: { INDEX: "/finances" },
+  PAYMENTS: { INDEX: "/payments" },
   LOGIN: { INDEX: "/login" },
   REGISTER: { INDEX: "/register" },
   RESET_PASSWORD: { INDEX: "/reset-password" },
@@ -30,9 +28,41 @@ export const STATUS_BOOKING = [
 ];
 
 export const SIDEBAR = {
-  HOME: {
-    LABEL: "Home",
-    TO: `/${ROUTES.HOME.INDEX}`,
+  DASHBOARD: {
+    LABEL: "Dashboard",
+    TO: `${ROUTES.DASHBOARD.INDEX}`,
+  },
+  BOOKINGS: {
+    LABEL: "Bookings",
+    TO: `${ROUTES.BOOKINGS.INDEX}`,
+  },
+  RESTAURANTS: {
+    LABEL: "Restaurants",
+    TO: `${ROUTES.RESTAURANTS.INDEX}`,
+  },
+  STAFFS: {
+    LABEL: "Staffs",
+    TO: `${ROUTES.STAFFS.INDEX}`,
+  },
+  CLIENTS: {
+    LABEL: "Clients",
+    TO: `${ROUTES.CLIENTS.INDEX}`,
+  },
+  CONCEPTS: {
+    LABEL: "Concepts",
+    TO: `${ROUTES.CONCEPTS.INDEX}`,
+  },
+  PROFILE: {
+    LABEL: "Your Profile",
+    TO: `${ROUTES.PROFILE.INDEX}`,
+  },
+  FINANCES: {
+    LABEL: "Finances",
+    TO: `${ROUTES.FINANCES.INDEX}`,
+  },
+  PAYMENTS: {
+    LABEL: "Payments",
+    TO: `${ROUTES.PAYMENTS.INDEX}`,
   },
 };
 
