@@ -1,5 +1,5 @@
 export * from "./Button";
-export * from "./LayoutMain";
+export * from "./LayoutMain/LayoutMain";
 export * from "./FieldInput";
 export * from "./LayoutChildren";
 export * from "./Menu";

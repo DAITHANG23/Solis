@@ -104,7 +104,6 @@ export const LoginForm = () => {
       </StyledImageLogo>
       <StyledContentContainer>
         <Typography variant="h5">{t("login.content")}</Typography>
-
         <GoogleLoginButton />
       </StyledContentContainer>
     </StyledContainerLoginForm>
