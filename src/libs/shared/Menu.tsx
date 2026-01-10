@@ -1,15 +1,8 @@
 "use client";
-import {
-  MenuItem,
-  Menu,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
-} from "@mui/material";
+import { MenuItem, Menu, ListItemIcon, ListItemText, IconButton } from "@mui/material";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import makeStyles from "@mui/styles/makeStyles";
-import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 
 const useStyles = makeStyles(() => ({
@@ -83,7 +76,6 @@ export const MenuCustom = ({
 }: MenuCustomProps) => {
   const classes = useStyles();
   const router = useRouter();
-  const { t } = useTranslation("translation");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -115,9 +107,9 @@ export const MenuCustom = ({
       {isAvatarMenu ? (
         <IconButton
           className={classes.avatarMenu}
-          id="demo-positioned-button"
+          id='demo-positioned-button'
           aria-controls={open ? "demo-positioned-menu" : undefined}
-          aria-haspopup="true"
+          aria-haspopup='true'
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
@@ -125,15 +117,15 @@ export const MenuCustom = ({
         </IconButton>
       ) : (
         <IconButton
-          id="demo-positioned-button"
+          id='demo-positioned-button'
           aria-controls={open ? "demo-positioned-menu" : undefined}
-          aria-haspopup="true"
+          aria-haspopup='true'
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
           {onSelect ? (
             <div className={classes.boxImage}>
-              <Image src={iconSelected || ""} alt="icon" fill />
+              <Image src={iconSelected || ""} alt='icon' fill />
             </div>
           ) : (
             titleButton
@@ -141,8 +133,8 @@ export const MenuCustom = ({
         </IconButton>
       )}
       <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
+        id='demo-positioned-menu'
+        aria-labelledby='demo-positioned-button'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -186,15 +178,13 @@ export const MenuCustom = ({
             <MenuItem
               key={o.name}
               onClick={() => {
-                return o.value
-                  ? handleSelect(o.value)
-                  : handleClickUrl(o.href || "/");
+                return o.value ? handleSelect(o.value) : handleClickUrl(o.href || "/");
               }}
             >
               {o.icon && (
                 <ListItemIcon>
                   <div className={classes.boxImage}>
-                    <Image src={o.icon || ""} alt="icon" fill />
+                    <Image src={o.icon || ""} alt='icon' fill />
                   </div>
                 </ListItemIcon>
               )}
@@ -203,9 +193,7 @@ export const MenuCustom = ({
                   <div>{o.iconOptions}</div>
                 </ListItemIcon>
               )}
-              <ListItemText classes={{ root: classes.listItemText }}>
-                {t(`settings.${o.name}`)}
-              </ListItemText>
+              <ListItemText classes={{ root: classes.listItemText }}>{o.name}</ListItemText>
             </MenuItem>
           );
         })}
