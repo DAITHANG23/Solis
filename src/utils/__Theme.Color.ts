@@ -18,7 +18,7 @@ export const grey500 = "#E4E7F1";
 export const grey400 = "#F2F3FA";
 export const grey300 = "#FAFAFD";
 
-export const primary = "#EF476F";
+export const primary = "#f06292";
 export const p400 = "#827DF1";
 export const p300 = "#9C99F8";
 export const p200 = "#BEBCFC";

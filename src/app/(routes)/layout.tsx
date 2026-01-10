@@ -1,7 +1,6 @@
 "use client";
 
 import ConfirmDialogContext from "@/contexts/ConfirmationContext";
-import i18n from "@/libs/i18n/i18n";
 import { accessToken, getAccountInfo } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import cookie from "@/utils/cookies";
@@ -9,7 +8,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { isEmpty } from "lodash";
 // import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { I18nextProvider } from "react-i18next";
 
 export default function ContainerLayout({
   children,
@@ -48,11 +46,9 @@ export default function ContainerLayout({
   }, [dispatch, accessTokenState, accountInfo]);
   return (
     <QueryClientProvider client={queryClient}>
-      <I18nextProvider i18n={i18n}>
         <ConfirmDialogContext>
           <div>{children}</div>
         </ConfirmDialogContext>
-      </I18nextProvider>
     </QueryClientProvider>
   );
 }
