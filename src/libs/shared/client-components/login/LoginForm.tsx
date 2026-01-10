@@ -2,13 +2,7 @@
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import Script from "next/script";
-import {
-  StyledContainerLoginForm,
-  StyledContentContainer,
-  StyledButton,
-  StyledImageLogo,
-} from "./LoginForm.styles";
-import { useTranslation } from "react-i18next";
+import { StyledContainerLoginForm, StyledContentContainer, StyledButton, StyledImageLogo } from "./LoginForm.styles";
 import { useState } from "react";
 // import { useRouter } from "next/navigation";
 import useNotification from "@/features/hooks/useNotification";
@@ -46,15 +40,12 @@ export const GoogleLoginButton = () => {
         try {
           const idToken = response.credential;
 
-          const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/google/`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ google_jwt: idToken }),
-              credentials: "include",
-            }
-          );
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/google/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ google_jwt: idToken }),
+            credentials: "include",
+          });
 
           if (res.ok) {
             showSuccess("Login successfull!");
@@ -76,34 +67,30 @@ export const GoogleLoginButton = () => {
 
   return (
     <>
-      <Script
-        src="https://accounts.google.com/gsi/client"
-        strategy="afterInteractive"
-      />
-      <StyledButton type="button" onClick={handleGoogleLogin}>
+      <Script src='https://accounts.google.com/gsi/client' strategy='afterInteractive' />
+      <StyledButton type='button' onClick={handleGoogleLogin}>
         <Image
-          src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-          alt="Google"
+          src='https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg'
+          alt='Google'
           width={20}
           height={20}
           style={{ width: "20px", height: "20px" }}
         />
-        <Typography variant="bodyM">Google</Typography>
+        <Typography variant='bodyM'>Google</Typography>
       </StyledButton>
     </>
   );
 };
 
 export const LoginForm = () => {
-  const { t } = useTranslation("home");
 
   return (
     <StyledContainerLoginForm>
       <StyledImageLogo>
-        <Image src={"/assets/images/logo2.png"} alt="logo" fill />
+        <Image src={"/assets/images/logo2.png"} alt='logo' fill />
       </StyledImageLogo>
       <StyledContentContainer>
-        <Typography variant="h5">{t("login.content")}</Typography>
+        <Typography variant='h5'>Log in to your account</Typography>
 
         <GoogleLoginButton />
       </StyledContentContainer>
