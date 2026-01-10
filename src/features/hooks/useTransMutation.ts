@@ -14,10 +14,7 @@ export type UseTransMutationOptions<
   TError extends AxiosError = AxiosError,
   TVariables = void,
   TContext = unknown,
-> = Omit<
-  UseMutationOptions<TMutationFnData, TError, TVariables, TContext>,
-  "mutationFn" | "mutationKey"
->;
+> = Omit<UseMutationOptions<TMutationFnData, TError, TVariables, TContext>, "mutationFn" | "mutationKey">;
 
 function useTransMutation<
   TMutationFnData = unknown,
@@ -27,11 +24,8 @@ function useTransMutation<
   TContext = unknown,
 >(
   mutationFn: MutationFunction<TData, TVariables>,
-  {
-    onError,
-    ...options
-  }: UseTransMutationOptions<TData, TError, TVariables, TContext> = {},
-  isShowError = true
+  { onError, ...options }: UseTransMutationOptions<TData, TError, TVariables, TContext> = {},
+  isShowError = true,
 ): UseMutationResult<TData, TError, TVariables, TContext> {
   const { showError } = useNotification();
 
