@@ -30,9 +30,12 @@ export const StyledImageContainer = styled(Link)(() => ({
   margin: "0 auto",
 }));
 
-export const StyledToolbarContainer = styled(Toolbar)(() => ({
+export const StyledToolbarContainer = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
+  [theme.breakpoints.up("sm")]: {
+    paddingLeft: "0 !important",
+  },
 }));
 
 export const StyledBoxNavbar = styled("div")(() => ({
@@ -56,7 +59,7 @@ export const StyledAppBar = styled(AppBar, {
     marginLeft: isHideSideBar ? "60px" : `${drawerWidth}px`,
   },
   [theme.breakpoints.up("lg")]: {
-    padding: theme.spacing(0, 2),
+    paddingRight: theme.spacing(2),
   },
 }));
 
@@ -79,7 +82,7 @@ export const StyledIconInputMenuArrow = styled(IconButton, {
   [theme.breakpoints.down("sm")]: {
     display: "none",
   },
-  marginLeft: theme.spacing(2),
+
   transform: isHideSideBar ? "rotate(180deg)" : "rotate(0deg)",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,

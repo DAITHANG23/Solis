@@ -3,20 +3,9 @@ import { Typography, Box, CssBaseline, Divider, List, ListItemIcon, Toolbar } fr
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import Image from "next/image";
-import { MenuCustom } from "../Menu";
-import {
-  CreditCardIcon,
-  UserRoundIcon,
-  WarehouseIcon,
-  HouseIcon,
-  UsersIcon,
-  ShoppingCartIcon,
-  ClipboardListIcon,
-} from "lucide-react";
-import { MenuArrowIcon, ProfileIcon, SettingIcon } from "@/libs/assets";
+import { UserRoundIcon } from "lucide-react";
+import { MenuArrowIcon } from "@/libs/assets";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/constants";
-import { DropdownListType } from "@/types/common";
 import { logout } from "@/libs/redux/authSlice";
 import { useAppDispatch } from "@/libs/redux/hooks";
 import useConfirmation from "@/features/hooks/useConfirmation";
@@ -41,56 +30,9 @@ import {
   StyledToolbar,
   StyledToolbarContainer,
 } from "./LayoutMain.styles";
-
-interface MenuList {
-  icon: React.ReactNode;
-  title: string;
-  href: string;
-  value: string;
-}
-
-const AVATAR_DROPDOWN_OPTIONS: Array<DropdownListType> = [
-  {
-    name: "yourProfile",
-    href: `${ROUTES.PROFILE.INDEX}`,
-    iconOptions: <ProfileIcon />,
-  },
-  { name: "title", iconOptions: <SettingIcon /> },
-];
-
-const MENU_LIST = [
-  { icon: <HouseIcon />, title: "Dashboard", href: "/", value: "dashboard" },
-  {
-    icon: <UsersIcon />,
-    title: "Customers",
-    href: "/customers",
-    value: "customers",
-  },
-  {
-    icon: <ShoppingCartIcon />,
-    title: "Orders",
-    href: "/orders",
-    value: "orders",
-  },
-  {
-    icon: <CreditCardIcon />,
-    title: "Payments",
-    href: "/payments",
-    value: "payments",
-  },
-  {
-    icon: <ClipboardListIcon />,
-    title: "Purchase waiting list",
-    href: "/purchase-waiting-list",
-    value: "purchaseWaitingList",
-  },
-  {
-    icon: <WarehouseIcon />,
-    title: "Warehouse",
-    href: "/warehouses",
-    value: "warehouses",
-  },
-] as Array<MenuList>;
+import { Menu } from "@shared/index";
+import { AVATAR_DROPDOWN_OPTIONS, MENU_LIST } from "./menuItems";
+import { ROUTES } from "@/constants/urls";
 
 interface LayoutMainProps {
   window?: () => Window;
@@ -149,7 +91,7 @@ export const LayoutMain = (props: LayoutMainProps) => {
   const drawer = (
     <div>
       <StyledToolbar>
-        <StyledImageContainer href={`${ROUTES.HOME.INDEX}`}>
+        <StyledImageContainer href={`${ROUTES.DASHBOARD.INDEX}`}>
           <Image src={`${isHideSideBar ? "/favicon.ico" : "/assets/images/logo.png"}`} alt='logo' fill />
         </StyledImageContainer>
       </StyledToolbar>
@@ -163,7 +105,7 @@ export const LayoutMain = (props: LayoutMainProps) => {
             itemSidebarValue={itemSidebarValue}
             item={item.value}
           >
-            <StyledListItemButton onClick={() => handleClickListItem(item.href, item.value)}>
+            <StyledListItemButton onClick={() => handleClickListItem(item.url, item.value)}>
               <ListItemIcon
                 sx={{
                   minWidth: isHideSideBar ? "24px" : "40px",
@@ -203,7 +145,7 @@ export const LayoutMain = (props: LayoutMainProps) => {
                 Admin
               </Typography>
             </StyledInfoNameBox>
-            <MenuCustom
+            <Menu
               titleButton={<UserRoundIcon width={"24px"} height={"24px"} color='black' />}
               verticalAnchor='bottom'
               horizontalTransformOrigin='center'
