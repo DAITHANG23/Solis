@@ -12,7 +12,7 @@ interface LayoutMainProps {
 export const LayoutMain = (props: LayoutMainProps) => {
   const { children } = props;
   const pathname = usePathname();
-  console.log("pathname:", pathname);
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
