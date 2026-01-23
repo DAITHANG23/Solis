@@ -1,8 +1,7 @@
 import { ROUTES } from "@/constants/urls";
 import { ProfileIcon, SettingIcon } from "@/libs/assets";
-import { DropdownListType, MenuList } from "@/types";
+import { DropdownListType, MenuItem } from "@/types";
 import {
-  CreditCardIcon,
   HouseIcon,
   LandmarkIcon,
   UsersIcon,
@@ -10,6 +9,7 @@ import {
   IdCardIcon,
   HamburgerIcon,
 } from "lucide-react";
+import * as feature from "@/constants/features";
 
 export const AVATAR_DROPDOWN_OPTIONS: Array<DropdownListType> = [
   {
@@ -21,48 +21,58 @@ export const AVATAR_DROPDOWN_OPTIONS: Array<DropdownListType> = [
 ];
 
 export const MENU_LIST = [
-  { icon: <HouseIcon />, title: "Dashboard", url: ROUTES.DASHBOARD.INDEX, value: "dashboard" },
   {
+    key: feature.DASHBOARD,
+    icon: <HouseIcon />,
+    title: "Dashboard",
+    url: ROUTES.DASHBOARD.INDEX,
+  },
+  {
+    key: feature.CLIENT,
     icon: <UsersIcon />,
     title: "Clients",
     url: ROUTES.CLIENTS.INDEX,
-    value: "clients",
   },
   {
+    key: feature.BOOKINGS,
     icon: <HamburgerIcon />,
     title: "Bookings",
     url: ROUTES.BOOKINGS.INDEX,
-    value: "bookings",
   },
   {
-    icon: <CreditCardIcon />,
-    title: "Payments",
-    url: ROUTES.PAYMENTS.INDEX,
-    value: "payments",
-  },
-  {
+    key: feature.CONCEPT,
     icon: <UtensilsIcon />,
     title: "Concepts",
     url: ROUTES.CONCEPTS.INDEX,
-    value: "concepts",
     subMenuItems: [
       {
+        key: feature.CONCEPT_RESTAURANTS_LIST,
         title: "Restaurants",
         url: ROUTES.RESTAURANTS.INDEX,
-        value: "restaurants",
       },
     ],
   },
   {
+    key: feature.STAFF,
     icon: <IdCardIcon />,
     title: "Staffs",
     url: ROUTES.STAFFS.INDEX,
-    value: "staffs",
   },
   {
+    key: feature.FINANCE,
     icon: <LandmarkIcon />,
     title: "Finances",
-    url: ROUTES.FINANCES.INDEX,
-    value: "finances",
+    submenuItems: [
+      {
+        key: feature.FINANCE_PAYMENTS,
+        title: "Payments",
+        url: ROUTES.FINANCES.PAYMENTS,
+      },
+      {
+        key: feature.FINANCE_INVOICES,
+        title: "Invoices",
+        url: ROUTES.FINANCES.INVOICES,
+      },
+    ],
   },
-] as Array<MenuList>;
+] as Array<MenuItem>;

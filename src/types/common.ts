@@ -4,10 +4,11 @@ export interface DropdownListType {
   iconOptions: React.ReactNode;
 }
 
-export interface MenuList {
+export interface MenuItem {
+  key: string;
   icon: React.ReactNode;
   title: string;
   url: string;
   value: string;
-  submenuItems?: Array<any>;
+  submenuItems?: Array<MenuItem>;
 }
