@@ -1,5 +1,5 @@
 "use client";
-import { MenuItem, Menu, ListItemIcon, ListItemText, IconButton } from "@mui/material";
+import { MenuItem, Menu as MuiMenu, ListItemIcon, ListItemText, IconButton } from "@mui/material";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import makeStyles from "@mui/styles/makeStyles";
@@ -49,7 +49,7 @@ type MenuOption = {
   iconOptions?: React.ReactNode;
 };
 
-interface MenuCustomProps {
+interface MenuProps {
   verticalAnchor?: verticalAnchor;
   horizontalAnchor?: horizontalAnchor;
   verticalTransformOrigin?: verticalAnchor;
@@ -62,7 +62,7 @@ interface MenuCustomProps {
   isArrowStyle?: boolean;
 }
 
-export const MenuCustom = ({
+export const Menu = ({
   options,
   verticalAnchor = "top",
   horizontalAnchor = "left",
@@ -73,7 +73,7 @@ export const MenuCustom = ({
   titleButton,
   isAvatarMenu = false,
   isArrowStyle = true,
-}: MenuCustomProps) => {
+}: MenuProps) => {
   const classes = useStyles();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -132,7 +132,7 @@ export const MenuCustom = ({
           )}
         </IconButton>
       )}
-      <Menu
+      <MuiMenu
         id='demo-positioned-menu'
         aria-labelledby='demo-positioned-button'
         anchorEl={anchorEl}
@@ -197,7 +197,7 @@ export const MenuCustom = ({
             </MenuItem>
           );
         })}
-      </Menu>
+      </MuiMenu>
     </div>
   );
 };

@@ -3,6 +3,7 @@
 import ConfirmDialogContext from "@/contexts/ConfirmationContext";
 import { accessToken, getAccountInfo } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
+import { LayoutMain } from "@/libs/shared";
 import cookie from "@/utils/cookies";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { isEmpty } from "lodash";
@@ -46,9 +47,9 @@ export default function ContainerLayout({
   }, [dispatch, accessTokenState, accountInfo]);
   return (
     <QueryClientProvider client={queryClient}>
-        <ConfirmDialogContext>
-          <div>{children}</div>
-        </ConfirmDialogContext>
+      <ConfirmDialogContext>
+        <LayoutMain>{children}</LayoutMain>
+      </ConfirmDialogContext>
     </QueryClientProvider>
   );
 }
