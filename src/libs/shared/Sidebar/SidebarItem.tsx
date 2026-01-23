@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState, memo } from "react";
 import {
+  StyledBoxTextAndIcon,
   StyledChevronRightIcon,
   StyledDotIcon,
   StyledExpandMoreIcon,
@@ -147,15 +148,7 @@ const SidebarItem = (props: SidebarItemProps) => {
             hasSubMenuItem={hasSubMenuItem}
           >
             <StyledListItemButton level={level}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: isHideSideBar && level < 1 ? "column" : "row",
-                  justifyContent: level > 0 ? "flex-start" : "center",
-                  alignItems: "center",
-                  minWidth: "70px",
-                }}
-              >
+              <StyledBoxTextAndIcon isHideSideBar={isHideSideBar} level={level}>
                 <StyledListItemIcon isActive={active}>
                   {menu.icon || (!hideDotIcon && <StyledDotIcon isActive={active} />)}
                 </StyledListItemIcon>
@@ -164,7 +157,7 @@ const SidebarItem = (props: SidebarItemProps) => {
                   isHideSidebar={isHideSideBar}
                   level={level}
                 />
-              </div>
+              </StyledBoxTextAndIcon>
             </StyledListItemButton>
           </StyledListItem>
         </WrapperComponent>
@@ -182,15 +175,7 @@ const SidebarItem = (props: SidebarItemProps) => {
             className={isHovering ? "hovering" : ""}
           >
             <StyledListItemButton level={level} onClick={() => handleClickMenuItem(menu.key)}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: isHideSideBar && level < 1 ? "column" : "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  minWidth: "70px",
-                }}
-              >
+              <StyledBoxTextAndIcon isHideSideBar={isHideSideBar} level={level}>
                 <StyledListItemIcon isActive={active} className='hover-icon'>
                   {menu.icon || (!hideDotIcon && <StyledDotIcon isActive={active} />)}
                 </StyledListItemIcon>
@@ -199,7 +184,7 @@ const SidebarItem = (props: SidebarItemProps) => {
                   isHideSidebar={isHideSideBar}
                   level={level}
                 />
-              </div>
+              </StyledBoxTextAndIcon>
               {isHideSideBar ? (
                 <StyledChevronRightIcon className='hover-icon' isActive={active} />
               ) : (

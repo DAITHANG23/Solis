@@ -8,7 +8,7 @@ export const StyledDotIcon = styled(DotIcon, {
 })<{ isActive: boolean }>(({ isActive, theme }) => ({
   width: isActive ? "8px" : "4px",
   height: isActive ? "8px" : "4px",
-  marginRight: "16px",
+  marginRight: isActive ? "12px" : "16px",
   backgroundColor: isActive ? theme.palette.common.white : theme.palette.common.black,
   borderRadius: 100,
   transform: "translate3d(0px, 0, 0)",
@@ -128,4 +128,14 @@ export const StyledListItemIcon = styled(ListItemIcon, {
 })<{ isActive: boolean }>(({ isActive, theme }) => ({
   minWidth: "0px",
   color: isActive ? theme.palette.common.white : theme.palette.common.black,
+}));
+
+export const StyledBoxTextAndIcon = styled("div", {
+  shouldForwardProp: (prop) => prop !== "isHideSideBar" && prop !== "level",
+})<{ isHideSideBar: boolean; level: number }>(({ isHideSideBar, level }) => ({
+  display: "flex",
+  flexDirection: isHideSideBar && level < 1 ? "column" : "row",
+  justifyContent: "center",
+  alignItems: "center",
+  minWidth: "70px",
 }));
