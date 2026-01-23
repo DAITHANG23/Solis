@@ -1,0 +1,25 @@
+export const ROUTES = {
+  DASHBOARD: { INDEX: "/" },
+  AUTH: { PROFILE: "/profile" },
+  CONCEPTS: { INDEX: "/concepts" },
+  RESTAURANTS: { INDEX: "/restaurants" },
+  BOOKINGS: { INDEX: "/bookings" },
+  CLIENTS: {
+    INDEX: "/clients",
+    PROFILE: "/clients/:id/profile",
+    CREATE: "/clients/new",
+    EDIT: "/clients/:id/edit",
+  },
+  STAFFS: { INDEX: "/staffs", PROFILE: "/staffs/:id/profile" },
+  FINANCES: {
+    INDEX: "/finances",
+    PAYMENTS: "/finances/payments",
+    REFUNDS: "/finances/refunds",
+    INVOICES: "/finances/invoices",
+    REVENUE_REPORT: "/finances/revenue-report",
+  },
+  LOGIN: { INDEX: "/login" },
+  REGISTER: { INDEX: "/register" },
+  RESET_PASSWORD: { INDEX: "/reset-password" },
+  FORGOT_PASSWORD: { INDEX: "/forgot-password" },
+};

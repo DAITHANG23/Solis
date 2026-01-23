@@ -1,7 +1,7 @@
 export async function generateMetadata() {
   return {
-    title: "Dashboard | Domique Fusion",
-    description: "This is clients feature which has information of clients",
+    title: "Payments | Domique Fusion",
+    description: "Learn more about Domique Fusion, our story, and what we offer.",
   };
 }
 
