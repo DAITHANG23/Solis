@@ -120,7 +120,7 @@ const SidebarItem = (props: SidebarItemProps) => {
 
     return (
       <StyledExpandMoreIcon
-        className='expand-icon'
+        className='hover-icon'
         isActive={active}
         chooseMenuItem={chooseMenuItem}
       />
