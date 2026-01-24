@@ -29,14 +29,26 @@ import { ROUTES } from "@/constants/urls";
 import { logout } from "@/libs/redux/authSlice";
 import SidebarItem from "./SidebarItem";
 import { AppLink } from "@/libs/shared/index";
+import { makeStyles } from "@mui/styles";
 
 interface SidebarProps {
   window?: () => Window;
   pathname?: string;
 }
 
+const useStyled = makeStyles(() => ({
+  nameAccount: {
+    color: "black",
+  },
+  role: {
+    color: "#888B94",
+  },
+}));
+
 const Sidebar = (props: SidebarProps) => {
   const { window, pathname } = props;
+
+  const classes = useStyled();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isHideSideBar, setIsHideSideBar] = useState(false);
@@ -130,10 +142,10 @@ const Sidebar = (props: SidebarProps) => {
           </StyledIconInputMenuArrow>
           <StyledBoxNavbar>
             <StyledInfoNameBox>
-              <Typography variant='bodyM' sx={{ color: "black" }}>
+              <Typography variant='bodyM' className={classes.nameAccount}>
                 @Dom Nguyen
               </Typography>
-              <Typography variant='bodyXS' sx={{ color: "#888B94" }}>
+              <Typography variant='bodyXS' className={classes.role}>
                 Admin
               </Typography>
             </StyledInfoNameBox>
