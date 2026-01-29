@@ -1,15 +1,21 @@
 import { AppBar, Box, BoxProps, Drawer, IconButton, styled, Toolbar } from "@mui/material";
 import { LogOutIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
+import { AppLink } from "../AppLink";
 
 interface StyledBoxDrawerProps extends BoxProps {
   isHideSideBar: boolean;
 }
 const drawerWidth = 288;
 
-export const StyledToolbarContainer = styled(Toolbar)(({ theme }) => ({
+export const StyledToolbarContainer = styled(Toolbar, {
+  shouldForwardProp: (prop) => prop !== "isDesktopSize",
+})<{
+  isDesktopSize: boolean;
+}>(({ theme, isDesktopSize }) => ({
   display: "flex",
-  justifyContent: "space-between",
+  width: "100%",
+  justifyContent: !isDesktopSize ? "flex-end" : "space-between",
   [theme.breakpoints.up("sm")]: {
     paddingLeft: "0 !important",
   },
@@ -27,20 +33,25 @@ export const StyledInfoNameBox = styled("div")(() => ({
 }));
 
 export const StyledAppBar = styled(AppBar, {
-  shouldForwardProp: (prop) => prop !== "isHideSideBar",
-})<{ isHideSideBar: boolean }>(({ theme, isHideSideBar }) => ({
-  backgroundColor: theme.palette.background.default,
-  padding: 0,
-  [theme.breakpoints.up("sm")]: {
-    width: isHideSideBar
-      ? "calc(100% - 88px) !important"
-      : `calc(100% - ${drawerWidth}px) !important`,
-    marginLeft: isHideSideBar ? "88px" : `${drawerWidth}px`,
-  },
-  [theme.breakpoints.up("lg")]: {
-    paddingRight: theme.spacing(2),
-  },
-}));
+  shouldForwardProp: (prop) => prop !== "isHideSideBar" && prop !== "isDesktopSize",
+})<{ isHideSideBar: boolean; isDesktopSize: boolean }>(
+  ({ theme, isHideSideBar, isDesktopSize }) => ({
+    backgroundColor: theme.palette.background.default,
+    display: "flex",
+    flexDirection: "row",
+    padding: !isDesktopSize ? theme.spacing(0, 1) : 0,
+
+    [theme.breakpoints.up("sm")]: {
+      width: isHideSideBar
+        ? "calc(100% - 88px) !important"
+        : `calc(100% - ${drawerWidth}px) !important`,
+      marginLeft: isHideSideBar ? "88px" : `${drawerWidth}px`,
+    },
+    [theme.breakpoints.up("lg")]: {
+      paddingRight: theme.spacing(2),
+    },
+  }),
+);
 
 export const StyledIconInputMenu = styled(IconButton)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
@@ -65,6 +76,7 @@ export const StyledIconInputMenuArrow = styled(IconButton, {
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
+  padding: `${theme.spacing(4)} !important`,
 }));
 
 export const StyledIconInputSearch = styled(IconButton)(({ theme }) => ({
@@ -139,10 +151,22 @@ export const StyledToolbar = styled(Toolbar)(() => ({
   textAlign: "center",
 }));
 
-export const StyledImageContainer = styled(Link)(() => ({
+export const StyledImageContainer = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "isHiddenSidebar",
+})<{
+  isHiddenSidebar: boolean;
+}>(({ isHiddenSidebar }) => ({
   position: "relative",
-  width: "160px",
-  height: "40px",
+  width: isHiddenSidebar ? "60px" : "160px",
+  height: isHiddenSidebar ? "60px" : "40px",
   textAlign: "center",
   margin: "0 auto",
+}));
+
+export const StyledBreadcrumbsLink = styled(AppLink)(({ theme }) => ({
+  color: theme.palette.common.link,
+  textDecoration: "none",
+  "&:hover": {
+    textDecoration: "none",
+  },
 }));

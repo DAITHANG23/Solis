@@ -1,6 +1,7 @@
 "use client";
 
 import ConfirmDialogContext from "@/contexts/ConfirmationContext";
+import { BreadcrumbsProvider } from "@/contexts/SpreadscrumbContext";
 import { accessToken, getAccountInfo } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
 import { LayoutMain } from "@/libs/shared";
@@ -48,7 +49,9 @@ export default function ContainerLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <ConfirmDialogContext>
-        <LayoutMain>{children}</LayoutMain>
+        <BreadcrumbsProvider>
+          <LayoutMain>{children}</LayoutMain>
+        </BreadcrumbsProvider>
       </ConfirmDialogContext>
     </QueryClientProvider>
   );
