@@ -104,7 +104,7 @@ const Sidebar = (props: SidebarProps) => {
   const drawer = (
     <div>
       <StyledToolbar>
-        <StyledImageContainer href={`${URLS.DASHBOARD.INDEX}`}>
+        <StyledImageContainer href={`${URLS.DASHBOARD.INDEX}`} isHiddenSidebar={isHideSideBar}>
           <Image
             src={`${isHideSideBar ? "/favicon.ico" : "/assets/images/logo.png"}`}
             alt='logo'

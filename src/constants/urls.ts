@@ -51,4 +51,6 @@ export const ROUTES = [
   { id: features.CONCEPT_RESTAURANT_CREATE, path: URLS.RESTAURANTS.CREATE },
   { id: features.CONCEPT_RESTAURANT_EDIT, path: URLS.RESTAURANTS.EDIT },
   { id: features.CONCEPT_REVIEWS_LIST, path: URLS.CONCEPTS.REVIEW },
+  { id: features.CLIENT_LIST, path: URLS.CLIENTS.INDEX },
+  { id: features.BOOKINGS_LIST, path: URLS.BOOKINGS.INDEX },
 ];

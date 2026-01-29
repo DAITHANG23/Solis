@@ -37,6 +37,34 @@ const breadcrumbsMap: BreadcrumbsMap = {
     url: URLS.CLIENTS.EDIT,
     parent: feature.CLIENT,
   },
+
+  // Bookings feature
+  [feature.BOOKINGS_LIST]: {
+    name: "Bookings",
+    heading: "Bookings",
+    url: URLS.BOOKINGS.INDEX,
+  },
+
+  // Concepts feature
+  [feature.CONCEPT_LIST]: {
+    name: "Concepts",
+    heading: "Concepts",
+    url: URLS.CONCEPTS.INDEX,
+  },
+
+  // Staffs feature
+  [feature.STAFF_LIST]: {
+    name: "Staffs",
+    heading: "Staffs",
+    url: URLS.STAFFS.INDEX,
+  },
+
+  // Financials feature
+  // [feature.FINANCE_CONCEPT_PAYMENTS]: {
+  //   name: "Payments",
+  //   heading: "Payments",
+  //   url: URLS..INDEX,
+  // },
 };
 
 export default breadcrumbsMap;

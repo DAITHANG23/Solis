@@ -1,6 +1,7 @@
 import { AppBar, Box, BoxProps, Drawer, IconButton, styled, Toolbar } from "@mui/material";
 import { LogOutIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
+import { AppLink } from "../AppLink";
 
 interface StyledBoxDrawerProps extends BoxProps {
   isHideSideBar: boolean;
@@ -75,6 +76,7 @@ export const StyledIconInputMenuArrow = styled(IconButton, {
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
+  padding: `${theme.spacing(4)} !important`,
 }));
 
 export const StyledIconInputSearch = styled(IconButton)(({ theme }) => ({
@@ -149,10 +151,22 @@ export const StyledToolbar = styled(Toolbar)(() => ({
   textAlign: "center",
 }));
 
-export const StyledImageContainer = styled(Link)(() => ({
+export const StyledImageContainer = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "isHiddenSidebar",
+})<{
+  isHiddenSidebar: boolean;
+}>(({ isHiddenSidebar }) => ({
   position: "relative",
-  width: "160px",
-  height: "40px",
+  width: isHiddenSidebar ? "60px" : "160px",
+  height: isHiddenSidebar ? "60px" : "40px",
   textAlign: "center",
   margin: "0 auto",
+}));
+
+export const StyledBreadcrumbsLink = styled(AppLink)(({ theme }) => ({
+  color: theme.palette.common.link,
+  textDecoration: "none",
+  "&:hover": {
+    textDecoration: "none",
+  },
 }));
