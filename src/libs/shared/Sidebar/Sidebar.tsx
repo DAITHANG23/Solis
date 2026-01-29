@@ -18,22 +18,26 @@ import {
 } from "./Sidebar.styles";
 import { MenuIcon, UserRoundIcon } from "lucide-react";
 import { MenuArrowIcon } from "@/libs/assets";
-import { Divider, List, Typography } from "@mui/material";
-import { Menu } from "../Menu";
+import { Box, Divider, List, Typography } from "@mui/material";
+import { Menu } from "@shared/index";
 import { AVATAR_DROPDOWN_OPTIONS, MENU_LIST } from "../LayoutMain/menuItems";
 import useConfirmation from "@/features/hooks/useConfirmation";
 import { useAppDispatch } from "@/libs/redux/hooks";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { ROUTES } from "@/constants/urls";
+import { URLS } from "@/constants/urls";
 import { logout } from "@/libs/redux/authSlice";
 import SidebarItem from "./SidebarItem";
 import { AppLink } from "@/libs/shared/index";
 import { makeStyles } from "@mui/styles";
+import useBreakPoints from "@/features/hooks/useBreakPoints";
+import RenderBreadcrumbs from "../RenderBreadcrumbs/RenderBreadcrumbs";
+import { Breadcrumb } from "@/types";
 
 interface SidebarProps {
   window?: () => Window;
   pathname?: string;
+  breadcrumbs: Array<Breadcrumb>;
 }
 
 const useStyled = makeStyles(() => ({
@@ -46,7 +50,7 @@ const useStyled = makeStyles(() => ({
 }));
 
 const Sidebar = (props: SidebarProps) => {
-  const { window, pathname } = props;
+  const { window, pathname, breadcrumbs } = props;
 
   const classes = useStyled();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -57,6 +61,7 @@ const Sidebar = (props: SidebarProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  const { isDesktopSize } = useBreakPoints();
   const container = window !== undefined ? () => window().document.body : undefined;
 
   const handleDrawerClose = () => {
@@ -99,7 +104,7 @@ const Sidebar = (props: SidebarProps) => {
   const drawer = (
     <div>
       <StyledToolbar>
-        <StyledImageContainer href={`${ROUTES.DASHBOARD.INDEX}`}>
+        <StyledImageContainer href={`${URLS.DASHBOARD.INDEX}`}>
           <Image
             src={`${isHideSideBar ? "/favicon.ico" : "/assets/images/logo.png"}`}
             alt='logo'
@@ -126,20 +131,37 @@ const Sidebar = (props: SidebarProps) => {
   );
   return (
     <>
-      <StyledAppBar position='fixed' color='default' isHideSideBar={isHideSideBar}>
-        <StyledToolbarContainer>
-          <StyledIconInputMenu
-            color='inherit'
-            aria-label='open drawer'
-            edge='start'
-            onClick={handleDrawerToggle}
-          >
-            <MenuIcon />
-          </StyledIconInputMenu>
+      <StyledAppBar
+        position='fixed'
+        color='default'
+        isHideSideBar={isHideSideBar}
+        isDesktopSize={isDesktopSize}
+      >
+        <StyledIconInputMenu
+          color='inherit'
+          aria-label='open drawer'
+          edge='start'
+          onClick={handleDrawerToggle}
+        >
+          <MenuIcon />
+        </StyledIconInputMenu>
 
-          <StyledIconInputMenuArrow onClick={handleClickMenuArrow} isHideSideBar={isHideSideBar}>
-            <MenuArrowIcon />
-          </StyledIconInputMenuArrow>
+        <StyledIconInputMenuArrow onClick={handleClickMenuArrow} isHideSideBar={isHideSideBar}>
+          <MenuArrowIcon />
+        </StyledIconInputMenuArrow>
+        {isDesktopSize && (
+          <Divider
+            orientation='vertical'
+            sx={{ marginRight: "16px", backgroundColor: "#E4E7F1" }}
+            flexItem
+          />
+        )}
+        <StyledToolbarContainer isDesktopSize={isDesktopSize}>
+          {isDesktopSize && (
+            <Box display={"flex"} flexDirection={"column"}>
+              {breadcrumbs && <RenderBreadcrumbs breadcrumbs={breadcrumbs} />}
+            </Box>
+          )}
           <StyledBoxNavbar>
             <StyledInfoNameBox>
               <Typography variant='bodyM' className={classes.nameAccount}>

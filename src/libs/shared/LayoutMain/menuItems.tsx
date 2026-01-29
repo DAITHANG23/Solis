@@ -1,4 +1,4 @@
-import { ROUTES } from "@/constants/urls";
+import { URLS } from "@/constants/urls";
 import { ProfileIcon, SettingIcon } from "@/libs/assets";
 import { DropdownListType, MenuItem } from "@/types";
 import {
@@ -14,7 +14,7 @@ import * as feature from "@/constants/features";
 export const AVATAR_DROPDOWN_OPTIONS: Array<DropdownListType> = [
   {
     name: "yourProfile",
-    url: `${ROUTES.AUTH.PROFILE}`,
+    url: `${URLS.AUTH.PROFILE}`,
     iconOptions: <ProfileIcon />,
   },
   { name: "title", iconOptions: <SettingIcon /> },
@@ -25,30 +25,30 @@ export const MENU_LIST = [
     key: feature.DASHBOARD,
     icon: <HouseIcon />,
     title: "Dashboard",
-    url: ROUTES.DASHBOARD.INDEX,
+    url: URLS.DASHBOARD.INDEX,
   },
   {
     key: feature.CLIENT,
     icon: <UsersIcon />,
     title: "Clients",
-    url: ROUTES.CLIENTS.INDEX,
+    url: URLS.CLIENTS.INDEX,
   },
   {
     key: feature.BOOKINGS,
     icon: <HamburgerIcon />,
     title: "Bookings",
-    url: ROUTES.BOOKINGS.INDEX,
+    url: URLS.BOOKINGS.INDEX,
   },
   {
     key: feature.CONCEPT,
     icon: <UtensilsIcon />,
     title: "Concepts",
-    url: ROUTES.CONCEPTS.INDEX,
+    url: URLS.CONCEPTS.INDEX,
     subMenuItems: [
       {
         key: feature.CONCEPT_RESTAURANTS_LIST,
         title: "Restaurants",
-        url: ROUTES.RESTAURANTS.INDEX,
+        url: URLS.RESTAURANTS.INDEX,
       },
     ],
   },
@@ -56,7 +56,7 @@ export const MENU_LIST = [
     key: feature.STAFF,
     icon: <IdCardIcon />,
     title: "Staffs",
-    url: ROUTES.STAFFS.INDEX,
+    url: URLS.STAFFS.INDEX,
   },
   {
     key: feature.FINANCE,
@@ -66,12 +66,12 @@ export const MENU_LIST = [
       {
         key: feature.FINANCE_PAYMENTS,
         title: "Payments",
-        url: ROUTES.FINANCES.PAYMENTS,
+        url: URLS.FINANCES.PAYMENTS,
       },
       {
         key: feature.FINANCE_INVOICES,
         title: "Invoices",
-        url: ROUTES.FINANCES.INVOICES,
+        url: URLS.FINANCES.INVOICES,
       },
     ],
   },

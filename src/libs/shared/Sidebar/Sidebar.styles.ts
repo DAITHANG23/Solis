@@ -7,9 +7,14 @@ interface StyledBoxDrawerProps extends BoxProps {
 }
 const drawerWidth = 288;
 
-export const StyledToolbarContainer = styled(Toolbar)(({ theme }) => ({
+export const StyledToolbarContainer = styled(Toolbar, {
+  shouldForwardProp: (prop) => prop !== "isDesktopSize",
+})<{
+  isDesktopSize: boolean;
+}>(({ theme, isDesktopSize }) => ({
   display: "flex",
-  justifyContent: "space-between",
+  width: "100%",
+  justifyContent: !isDesktopSize ? "flex-end" : "space-between",
   [theme.breakpoints.up("sm")]: {
     paddingLeft: "0 !important",
   },
@@ -27,20 +32,25 @@ export const StyledInfoNameBox = styled("div")(() => ({
 }));
 
 export const StyledAppBar = styled(AppBar, {
-  shouldForwardProp: (prop) => prop !== "isHideSideBar",
-})<{ isHideSideBar: boolean }>(({ theme, isHideSideBar }) => ({
-  backgroundColor: theme.palette.background.default,
-  padding: 0,
-  [theme.breakpoints.up("sm")]: {
-    width: isHideSideBar
-      ? "calc(100% - 88px) !important"
-      : `calc(100% - ${drawerWidth}px) !important`,
-    marginLeft: isHideSideBar ? "88px" : `${drawerWidth}px`,
-  },
-  [theme.breakpoints.up("lg")]: {
-    paddingRight: theme.spacing(2),
-  },
-}));
+  shouldForwardProp: (prop) => prop !== "isHideSideBar" && prop !== "isDesktopSize",
+})<{ isHideSideBar: boolean; isDesktopSize: boolean }>(
+  ({ theme, isHideSideBar, isDesktopSize }) => ({
+    backgroundColor: theme.palette.background.default,
+    display: "flex",
+    flexDirection: "row",
+    padding: !isDesktopSize ? theme.spacing(0, 1) : 0,
+
+    [theme.breakpoints.up("sm")]: {
+      width: isHideSideBar
+        ? "calc(100% - 88px) !important"
+        : `calc(100% - ${drawerWidth}px) !important`,
+      marginLeft: isHideSideBar ? "88px" : `${drawerWidth}px`,
+    },
+    [theme.breakpoints.up("lg")]: {
+      paddingRight: theme.spacing(2),
+    },
+  }),
+);
 
 export const StyledIconInputMenu = styled(IconButton)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {

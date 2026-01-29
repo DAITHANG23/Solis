@@ -1,7 +1,7 @@
 import { accountEndpoints } from "@/api/enpoints";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { ErrorResponse } from "@/types/models/account";
-import { ROUTES } from "@/constants/urls";
+import { URLS } from "@/constants/urls";
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   retryCount?: number;
@@ -16,12 +16,14 @@ export const axiosWrapper = axios.create({
 
 const MAX_RETRIES = 3;
 
-axiosWrapper.interceptors.request.use(async (config: CustomAxiosRequestConfig): Promise<CustomAxiosRequestConfig> => {
-  const token = localStorage.getItem("accessToken");
+axiosWrapper.interceptors.request.use(
+  async (config: CustomAxiosRequestConfig): Promise<CustomAxiosRequestConfig> => {
+    const token = localStorage.getItem("accessToken");
 
-  config.headers.Authorization = token ? `Bearer ${token}` : "";
-  return config;
-});
+    config.headers.Authorization = token ? `Bearer ${token}` : "";
+    return config;
+  },
+);
 
 axiosWrapper.interceptors.response.use(
   (response) => response,
@@ -35,7 +37,7 @@ axiosWrapper.interceptors.response.use(
     if (error.response && typeof window !== "undefined") {
       if (status === 403 && error.response.data.message === "Invalid refresh token!") {
         await accountEndpoints.logout();
-        window.location.href = `${ROUTES.LOGIN.INDEX}`;
+        window.location.href = `${URLS.LOGIN.INDEX}`;
       }
       if (
         (status === 401 || status === 403 || status === 500) &&
@@ -65,7 +67,9 @@ axiosWrapper.interceptors.response.use(
         if (originalRequest.retryCount < MAX_RETRIES) {
           originalRequest.retryCount += 1;
           const retryAfter = error.response.headers["retry-after"];
-          const waitTime = retryAfter ? Number(retryAfter) * 1000 : 2 ** originalRequest.retryCount * 2000;
+          const waitTime = retryAfter
+            ? Number(retryAfter) * 1000
+            : 2 ** originalRequest.retryCount * 2000;
 
           await new Promise((resolve) => setTimeout(resolve, waitTime));
           return axiosWrapper(originalRequest);
