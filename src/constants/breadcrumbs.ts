@@ -1,12 +1,12 @@
 import type { BreadcrumbsMap } from "@/types/Header.types";
 import * as feature from "@/constants/features";
-import { ROUTES } from "./urls";
+import { URLS } from "./urls";
 
 const breadcrumbsMap: BreadcrumbsMap = {
   [feature.DASHBOARD]: {
     name: feature.DASHBOARD,
     heading: "Dashboard",
-    url: ROUTES.DASHBOARD.INDEX,
+    url: URLS.DASHBOARD.INDEX,
   },
 
   // Client Features
@@ -17,27 +17,54 @@ const breadcrumbsMap: BreadcrumbsMap = {
   [feature.CLIENT_LIST]: {
     name: "Clients",
     heading: "Clients",
-    url: ROUTES.CLIENTS.INDEX,
-    parent: feature.CLIENT,
+    url: URLS.CLIENTS.INDEX,
   },
   [feature.CLIENT_PROFILE]: {
     name: "Profile",
-    heading: "Profile",
-    url: ROUTES.CLIENTS.PROFILE,
+    heading: "Client Profile",
+    url: URLS.CLIENTS.PROFILE,
     parent: feature.CLIENT,
   },
   [feature.CLIENT_CREATE]: {
     name: "New Client",
     heading: "New Client",
-    url: ROUTES.CLIENTS.CREATE,
+    url: URLS.CLIENTS.CREATE,
     parent: feature.CLIENT,
   },
   [feature.CLIENT_EDIT]: {
     name: "Edit",
     heading: "Client Edit",
-    url: ROUTES.CLIENTS.EDIT,
+    url: URLS.CLIENTS.EDIT,
     parent: feature.CLIENT,
   },
+
+  // Bookings feature
+  [feature.BOOKINGS_LIST]: {
+    name: "Bookings",
+    heading: "Bookings",
+    url: URLS.BOOKINGS.INDEX,
+  },
+
+  // Concepts feature
+  [feature.CONCEPT_LIST]: {
+    name: "Concepts",
+    heading: "Concepts",
+    url: URLS.CONCEPTS.INDEX,
+  },
+
+  // Staffs feature
+  [feature.STAFF_LIST]: {
+    name: "Staffs",
+    heading: "Staffs",
+    url: URLS.STAFFS.INDEX,
+  },
+
+  // Financials feature
+  // [feature.FINANCE_CONCEPT_PAYMENTS]: {
+  //   name: "Payments",
+  //   heading: "Payments",
+  //   url: URLS..INDEX,
+  // },
 };
 
 export default breadcrumbsMap;

@@ -11,6 +11,7 @@ declare module "@mui/material/styles" {
     "200"?: string;
     "300"?: string;
     "400"?: string;
+    "500"?: string;
   }
 
   interface PaletteColorOptions {
@@ -23,6 +24,15 @@ declare module "@mui/material/styles" {
     "200"?: string;
     "300"?: string;
     "400"?: string;
+  }
+
+  interface CommonColors {
+    link?: string;
+    ghostWhite?: string;
+    cta?: string;
+    hover?: string;
+    disabled?: string;
+    selected?: string;
   }
 
   interface TypeBackground {
