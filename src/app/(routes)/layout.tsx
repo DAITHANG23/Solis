@@ -4,12 +4,12 @@ import ConfirmDialogContext from "@/contexts/ConfirmationContext";
 import { BreadcrumbsProvider } from "@/contexts/SpreadscrumbContext";
 import { accessToken, getAccountInfo } from "@/libs/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/redux/hooks";
-import { LayoutMain } from "@/libs/shared";
 import cookie from "@/utils/cookies";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { isEmpty } from "lodash";
 // import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export default function ContainerLayout({
   children,
@@ -47,12 +47,12 @@ export default function ContainerLayout({
     }
   }, [dispatch, accessTokenState, accountInfo]);
   return (
-    <QueryClientProvider client={queryClient}>
-      <ConfirmDialogContext>
-        <BreadcrumbsProvider>
-          <LayoutMain>{children}</LayoutMain>
-        </BreadcrumbsProvider>
-      </ConfirmDialogContext>
-    </QueryClientProvider>
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
+      <QueryClientProvider client={queryClient}>
+        <ConfirmDialogContext>
+          <BreadcrumbsProvider>{children}</BreadcrumbsProvider>
+        </ConfirmDialogContext>
+      </QueryClientProvider>
+    </GoogleOAuthProvider>
   );
 }

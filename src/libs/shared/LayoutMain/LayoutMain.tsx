@@ -23,7 +23,6 @@ export const LayoutMain = (props: LayoutMainProps) => {
   const route = ROUTES.find((item) => item.path === pathname);
   const breadcrumbs = getRouteBreadcrumb(route?.id || "/") || [];
 
-  console.log("breadcrumbs:", breadcrumbs);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />

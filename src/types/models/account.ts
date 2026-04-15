@@ -17,8 +17,7 @@ export interface RefreshTokenResponse {
 }
 
 export interface UserModel {
-  user_id: string;
-  business_user_id: string;
+  id: string;
   dateOfBirth?: string;
   address?: string;
   email: string;
@@ -26,10 +25,10 @@ export interface UserModel {
   numberPhone?: string;
   role?: string;
   status?: string;
-  full_name: string;
+  fullName: string;
   refreshToken?: string;
-  profile_picture?: string;
-  team_id?: string;
+  avatarUrl?: string;
+  googleId: string;
 }
 
 export interface UserResponse {

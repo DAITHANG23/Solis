@@ -20,5 +20,6 @@ const account = {
   getDataAccount: (): Promise<UserResponse> => {
     return apiRequest(`${baseURL}/me`, "GET");
   },
+  
 };
 export default account;
