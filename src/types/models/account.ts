@@ -25,15 +25,26 @@ export interface UserModel {
   numberPhone?: string;
   role?: string;
   status?: string;
+  firstName: string;
+  lastName: string;
   fullName: string;
   refreshToken?: string;
   avatarUrl?: string;
   googleId: string;
+  createdAt: string;
 }
 
 export interface UserResponse {
-  data: { data: UserModel };
-  status: string;
+  data: { user: UserModel; refreshToken: string; accessToken: string };
 }
 
-export interface UserLogin extends Partial<UserModel> {}
+export interface UserLoginGmailResponse extends UserResponse {
+  statusCode: number;
+  message: string;
+}
+
+export interface UserProfileResponse {
+  data: UserModel;
+  statusCode: number;
+  message: string;
+}

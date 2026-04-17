@@ -18,17 +18,7 @@ export const clearJWTCookies = (name: string): void => {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
 
-export const getRefreshToken = () => {
-  let refreshToken;
-  if (process.env.NODE_ENV === "development") {
-    refreshToken = localStorage.getItem("refreshToken");
-  } else if (process.env.NODE_ENV === "production") {
-    refreshToken = getJWTCookies("jwt");
-  }
-  return refreshToken;
-};
-
-const cookie = {
+const authService = {
   getRefreshToken: () => {
     return getJWTCookies("refresh_token") as string;
   },
@@ -37,4 +27,4 @@ const cookie = {
   },
 };
 
-export default cookie;
+export default authService;
