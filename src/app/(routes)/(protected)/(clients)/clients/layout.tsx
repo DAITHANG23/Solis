@@ -1,6 +1,6 @@
 export async function generateMetadata() {
   return {
-    title: "Clients | Domique Fusion",
+    title: "Clients | Admin Domique Fusion",
     description: "This is clients feature which has information of clients",
   };
 }

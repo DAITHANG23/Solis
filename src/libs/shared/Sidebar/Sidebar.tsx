@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { capitalize } from "lodash";
 import {
   StyledAppBar,
   StyledBoxDrawer,
@@ -22,17 +23,16 @@ import { Box, Divider, List, Typography } from "@mui/material";
 import { Menu } from "@shared/index";
 import { AVATAR_DROPDOWN_OPTIONS, MENU_LIST } from "../LayoutMain/menuItems";
 import useConfirmation from "@/features/hooks/useConfirmation";
-import { useAppDispatch } from "@/libs/redux/hooks";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { URLS } from "@/constants/urls";
-import { logout } from "@/libs/redux/authSlice";
 import SidebarItem from "./SidebarItem";
 import { AppLink } from "@/libs/shared/index";
 import { makeStyles } from "@mui/styles";
 import useBreakPoints from "@/features/hooks/useBreakPoints";
 import RenderBreadcrumbs from "../RenderBreadcrumbs/RenderBreadcrumbs";
 import { Breadcrumb } from "@/types";
+import useProfile from "@/features/hooks/useProfile";
 
 interface SidebarProps {
   window?: () => Window;
@@ -56,9 +56,11 @@ const Sidebar = (props: SidebarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isHideSideBar, setIsHideSideBar] = useState(false);
+  const { data: user } = useProfile();
+
+  const userProfile = user?.data;
 
   const showConfirmation = useConfirmation();
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const { isDesktopSize } = useBreakPoints();
@@ -80,7 +82,6 @@ const Sidebar = (props: SidebarProps) => {
   };
 
   const logoutHandle = () => {
-    dispatch(logout());
     router.push("/login");
   };
 
@@ -165,14 +166,26 @@ const Sidebar = (props: SidebarProps) => {
           <StyledBoxNavbar>
             <StyledInfoNameBox>
               <Typography variant='bodyM' className={classes.nameAccount}>
-                @Dom Nguyen
+                @{userProfile?.fullName}
               </Typography>
               <Typography variant='bodyXS' className={classes.role}>
-                Admin
+                {capitalize(userProfile?.role || "")}
               </Typography>
             </StyledInfoNameBox>
             <Menu
-              titleButton={<UserRoundIcon width={"24px"} height={"24px"} color='black' />}
+              titleButton={
+                userProfile?.avatarUrl ? (
+                  <Image
+                    src={userProfile.avatarUrl}
+                    width={32}
+                    height={32}
+                    alt='avatar'
+                    style={{ borderRadius: "50%" }}
+                  />
+                ) : (
+                  <UserRoundIcon width={24} height={24} color='black' />
+                )
+              }
               verticalAnchor='bottom'
               horizontalTransformOrigin='center'
               options={AVATAR_DROPDOWN_OPTIONS}
