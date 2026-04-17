@@ -1,7 +1,7 @@
 export async function generateMetadata() {
   return {
-    title: "Payments | Domique Fusion",
-    description: "Learn more about Domique Fusion, our story, and what we offer.",
+    title: "Payments | Admin Domique Fusion",
+    description: "Learn more about Admin Domique Fusion, our story, and what we offer.",
   };
 }
 

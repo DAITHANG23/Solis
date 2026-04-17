@@ -17,8 +17,7 @@ export interface RefreshTokenResponse {
 }
 
 export interface UserModel {
-  user_id: string;
-  business_user_id: string;
+  id: string;
   dateOfBirth?: string;
   address?: string;
   email: string;
@@ -26,15 +25,26 @@ export interface UserModel {
   numberPhone?: string;
   role?: string;
   status?: string;
-  full_name: string;
+  firstName: string;
+  lastName: string;
+  fullName: string;
   refreshToken?: string;
-  profile_picture?: string;
-  team_id?: string;
+  avatarUrl?: string;
+  googleId: string;
+  createdAt: string;
 }
 
 export interface UserResponse {
-  data: { data: UserModel };
-  status: string;
+  data: { user: UserModel; refreshToken: string; accessToken: string };
 }
 
-export interface UserLogin extends Partial<UserModel> {}
+export interface UserLoginGmailResponse extends UserResponse {
+  statusCode: number;
+  message: string;
+}
+
+export interface UserProfileResponse {
+  data: UserModel;
+  statusCode: number;
+  message: string;
+}

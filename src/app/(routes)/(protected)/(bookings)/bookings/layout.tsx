@@ -1,6 +1,6 @@
 export async function generateMetadata() {
   return {
-    title: "Bookings | Domique Fusion",
+    title: "Bookings | Admin Admin Domique Fusion",
     description: "This is bookings feature which has information of bookings",
   };
 }

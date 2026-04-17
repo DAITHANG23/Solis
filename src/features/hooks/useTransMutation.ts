@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 
 import { AxiosError } from "axios";
-import _get from "lodash/get";
+// import _get from "lodash/get";
 import useNotification from "./useNotification";
 
 export type UseTransMutationOptions<
@@ -34,11 +34,12 @@ function useTransMutation<
 
   return useMutation<TData, TError, TVariables, TContext>({
     mutationFn,
-    onError: (error, variables, context) => {
-      if (_get(error, "response.status") === 403) return;
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    onError: (error: any, variables, context) => {
+      // if (_get(error, "response.status") === 403) return;
 
       if (isShowError) {
-        showError(error.message);
+        showError(error.response?.data.message);
       }
 
       if (onError) {

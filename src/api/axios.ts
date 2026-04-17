@@ -1,7 +1,8 @@
-import { accountEndpoints } from "@/api/enpoints";
+import { authEndpoints } from "@/api/enpoints";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { ErrorResponse } from "@/types/models/account";
 import { URLS } from "@/constants/urls";
+import { getJWTCookies } from "@/utils/authService";
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   retryCount?: number;
@@ -18,7 +19,7 @@ const MAX_RETRIES = 3;
 
 axiosWrapper.interceptors.request.use(
   async (config: CustomAxiosRequestConfig): Promise<CustomAxiosRequestConfig> => {
-    const token = localStorage.getItem("accessToken");
+    const token = getJWTCookies("access_token");
 
     config.headers.Authorization = token ? `Bearer ${token}` : "";
     return config;
@@ -28,6 +29,7 @@ axiosWrapper.interceptors.request.use(
 axiosWrapper.interceptors.response.use(
   (response) => response,
   async (error: AxiosError<ErrorResponse>) => {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const originalRequest = error.config as InternalAxiosRequestConfig<any> & {
       _retry?: boolean;
       retryCount?: number;
@@ -36,7 +38,7 @@ axiosWrapper.interceptors.response.use(
 
     if (error.response && typeof window !== "undefined") {
       if (status === 403 && error.response.data.message === "Invalid refresh token!") {
-        await accountEndpoints.logout();
+        await authEndpoints.logout();
         window.location.href = `${URLS.LOGIN.INDEX}`;
       }
       if (
@@ -48,7 +50,7 @@ axiosWrapper.interceptors.response.use(
         originalRequest._retry = true;
 
         try {
-          const data = await accountEndpoints.refreshToken();
+          const data = await authEndpoints.refreshToken();
           localStorage.setItem("accessToken", data.accessToken);
           originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
           return axiosWrapper(originalRequest);
@@ -56,7 +58,7 @@ axiosWrapper.interceptors.response.use(
           console.error("Refresh token expired. Logging out.", err);
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
-          await accountEndpoints.logout();
+          await authEndpoints.logout();
         }
       } else if (status === 429) {
         console.error("Too Many Requests - 429: Quá nhiều request");
