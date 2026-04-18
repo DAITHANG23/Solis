@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import useNotification from "@/features/hooks/useNotification";
 import useTransMutation from "@/features/hooks/useTransMutation";
 import { authEndpoints } from "@/api/enpoints";
+import { useAuthStore } from "@/store/useAuthStore";
 declare global {
   interface Window {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -21,6 +22,7 @@ declare global {
 export const GoogleLoginButton = () => {
   const router = useRouter();
   const { showSuccess, showError } = useNotification();
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
 
   const { mutateAsync: handleGoogleLogin } = useTransMutation(
     (idToken: string) => authEndpoints.googleLogin({ idToken }),
@@ -36,6 +38,7 @@ export const GoogleLoginButton = () => {
         if (refreshTokenResponse && process.env.NODE_ENV !== "production") {
           document.cookie = `refresh_token=${refreshTokenResponse}; path=/; SameSite=Lax; Expires=${new Date(Date.now() + ttlSeconds * 1000)}`;
         }
+        setIsAuthenticated(true || !!accessTokenResponse);
         showSuccess("Login Success");
         router.push("/");
       },

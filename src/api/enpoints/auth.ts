@@ -12,7 +12,7 @@ const auth = {
     return apiRequest(`${baseURL}/refreshToken`, "POST", data);
   },
   logout: () => {
-    return apiRequest(`${baseURL}/logout`, "POST");
+    return apiRequest(`${baseURL}/signout`, "POST");
   },
   getDataAccount: (): Promise<UserResponse> => {
     return apiRequest(`${baseURL}/me`, "GET");

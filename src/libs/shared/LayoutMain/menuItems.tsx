@@ -13,11 +13,11 @@ import * as feature from "@/constants/features";
 
 export const AVATAR_DROPDOWN_OPTIONS: Array<DropdownListType> = [
   {
-    name: "yourProfile",
+    name: "Profile",
     url: `${URLS.AUTH.PROFILE}`,
     iconOptions: <ProfileIcon />,
   },
-  { name: "title", iconOptions: <SettingIcon /> },
+  { name: "Settings", iconOptions: <SettingIcon /> },
 ];
 
 export const MENU_LIST = [

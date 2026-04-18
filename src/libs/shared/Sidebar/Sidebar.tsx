@@ -23,7 +23,6 @@ import { Box, Divider, List, Typography } from "@mui/material";
 import { Menu } from "@shared/index";
 import { AVATAR_DROPDOWN_OPTIONS, MENU_LIST } from "../LayoutMain/menuItems";
 import useConfirmation from "@/features/hooks/useConfirmation";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { URLS } from "@/constants/urls";
 import SidebarItem from "./SidebarItem";
@@ -56,12 +55,11 @@ const Sidebar = (props: SidebarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isHideSideBar, setIsHideSideBar] = useState(false);
-  const { data: user } = useProfile();
+  const { data: user, profileLogout } = useProfile();
 
   const userProfile = user?.data;
 
   const showConfirmation = useConfirmation();
-  const router = useRouter();
 
   const { isDesktopSize } = useBreakPoints();
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -82,7 +80,7 @@ const Sidebar = (props: SidebarProps) => {
   };
 
   const logoutHandle = () => {
-    router.push("/login");
+    profileLogout();
   };
 
   const handleLogout = () => {
