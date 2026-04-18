@@ -6,21 +6,17 @@ import authService from "@/utils/authService";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { useRouter } from "next/navigation";
-import useProfile from "@/features/hooks/useProfile";
+import { useAuthStore } from "@/store/useAuthStore";
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const { profileLogout } = useProfile();
-
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
   useEffect(() => {
     const accessTokenCookie = authService.getAccessToken();
 
-    if (!accessTokenCookie) {
-      profileLogout();
-      router.push("/login");
+    if (accessTokenCookie) {
+      setIsAuthenticated(true);
     }
-  }, [router, profileLogout]);
+  }, [setIsAuthenticated]);
 
   return <>{children}</>;
 }
