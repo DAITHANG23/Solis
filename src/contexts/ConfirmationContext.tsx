@@ -68,9 +68,14 @@ const ConfirmDialogProvider = ({ children }: ConfirmDialogProviderProps) => {
       }
     };
     const handleConfirm = async () => {
-      if (onInternalConfirm) {
+      try {
         setLoading(true);
-        onInternalConfirm();
+        if (onInternalConfirm) {
+          await onInternalConfirm();
+        }
+      } catch (error) {
+        console.error("Error confirming:", error);
+      } finally {
         setLoading(false);
         setOpen(false);
       }
@@ -85,9 +90,7 @@ const ConfirmDialogProvider = ({ children }: ConfirmDialogProviderProps) => {
   }, []);
   return (
     <>
-      <ConfirmDialogContext.Provider
-        value={{ showConfirmation: handleShowConfirmation }}
-      >
+      <ConfirmDialogContext.Provider value={{ showConfirmation: handleShowConfirmation }}>
         {children}
       </ConfirmDialogContext.Provider>
       {open && (
