@@ -60,11 +60,35 @@ const breadcrumbsMap: BreadcrumbsMap = {
   },
 
   // Financials feature
-  // [feature.FINANCE_CONCEPT_PAYMENTS]: {
-  //   name: "Payments",
-  //   heading: "Payments",
-  //   url: URLS..INDEX,
-  // },
+  [feature.FINANCE]: {
+    name: "Finances",
+    heading: "Finances",
+    url: URLS.FINANCES.INDEX,
+  },
+  [feature.FINANCE_PAYMENTS]: {
+    name: "Payments",
+    heading: "Payments",
+    url: URLS.FINANCES.PAYMENTS,
+    parent: feature.FINANCE,
+  },
+  [feature.FINANCE_INVOICES]: {
+    name: "Invoices",
+    heading: "Invoices",
+    url: URLS.FINANCES.INVOICES,
+    parent: feature.FINANCE,
+  },
+  [feature.FINANCE_REFUNDS]: {
+    name: "Refunds",
+    heading: "Refunds",
+    url: URLS.FINANCES.REFUNDS,
+    parent: feature.FINANCE,
+  },
+  [feature.FINANCE_REVENUE_REPORT]: {
+    name: "Revenue Report",
+    heading: "Revenue Report",
+    url: URLS.FINANCES.REVENUE_REPORT,
+    parent: feature.FINANCE,
+  },
 };
 
 export default breadcrumbsMap;
