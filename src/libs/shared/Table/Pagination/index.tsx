@@ -31,13 +31,13 @@ export const Pagination = ({
   return (
     <div className={clsx(paginationClass)} style={{ backgroundColor: "#FFF" }}>
       <TablePagination
-        component="div"
+        component='div'
         count={totalItems}
         page={page}
         onPageChange={handlePageChange}
         rowsPerPage={pageSize}
         onRowsPerPageChange={(event) => {
-          const newSize = parseInt(event.target.value, 10);
+          const newSize = Number.parseInt(event.target.value, 10);
           if (onPageSizeChange) {
             onPageSizeChange(newSize);
           }
