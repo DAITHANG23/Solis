@@ -2,7 +2,7 @@ import { authEndpoints } from "@/api/enpoints";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { ErrorResponse } from "@/types/models/account";
 import { URLS } from "@/constants/urls";
-import { getJWTCookies } from "@/utils/authService";
+import authService, { getJWTCookies } from "@/utils/authService";
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
   retryCount?: number;
@@ -34,7 +34,7 @@ axiosWrapper.interceptors.response.use(
       _retry?: boolean;
       retryCount?: number;
     };
-    const status = error.response?.status;
+    const status = error.response?.data.statusCode;
 
     if (error.response && typeof window !== "undefined") {
       if (status === 403 && error.response.data.message === "Invalid refresh token!") {
@@ -43,7 +43,7 @@ axiosWrapper.interceptors.response.use(
       }
       if (
         (status === 401 || status === 403 || status === 500) &&
-        (error.response?.data?.error?.name === "TokenExpiredError" ||
+        (error.response?.data?.message === "Unauthorized" ||
           error.response.data.message === "Your token has expired! Please log in again") &&
         !originalRequest._retry
       ) {
@@ -51,8 +51,10 @@ axiosWrapper.interceptors.response.use(
 
         try {
           const data = await authEndpoints.refreshToken();
-          localStorage.setItem("accessToken", data.accessToken);
-          originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+          if (data.data.accessToken && process.env.NODE_ENV !== "production") {
+            authService.setAccessToken(data.data.accessToken);
+          }
+          originalRequest.headers.Authorization = `Bearer ${data.data.accessToken}`;
           return axiosWrapper(originalRequest);
         } catch (err) {
           console.error("Refresh token expired. Logging out.", err);

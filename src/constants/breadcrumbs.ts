@@ -63,7 +63,7 @@ const breadcrumbsMap: BreadcrumbsMap = {
   [feature.FINANCE]: {
     name: "Finances",
     heading: "Finances",
-    url: URLS.FINANCES.INDEX,
+    url: URLS.FINANCES.PAYMENTS,
   },
   [feature.FINANCE_PAYMENTS]: {
     name: "Payments",
