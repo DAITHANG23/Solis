@@ -53,4 +53,8 @@ export const ROUTES = [
   { id: features.CONCEPT_REVIEWS_LIST, path: URLS.CONCEPTS.REVIEW },
   { id: features.CLIENT_LIST, path: URLS.CLIENTS.INDEX },
   { id: features.BOOKINGS_LIST, path: URLS.BOOKINGS.INDEX },
+  { id: features.STAFF_LIST, path: URLS.STAFFS.INDEX },
+  { id: features.FINANCE_PAYMENTS, path: URLS.FINANCES.PAYMENTS },
+  { id: features.FINANCE_INVOICES, path: URLS.FINANCES.INVOICES },
+  { id: features.FINANCE_REVENUE_REPORT, path: URLS.FINANCES.REVENUE_REPORT },
 ];

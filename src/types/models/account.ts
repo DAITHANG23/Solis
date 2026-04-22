@@ -1,19 +1,13 @@
-export interface ErrorObject {
-  messageError: string;
-  statusCode: number;
-  status: string;
-  isOperational: boolean;
-  name?: string;
-  expiredAt?: string;
-}
+
 export interface ErrorResponse {
-  status: string;
-  error: ErrorObject;
+  statusCode: number;
   message: string;
 }
 
 export interface RefreshTokenResponse {
-  accessToken: string;
+  data: { accessToken: string, status: string };
+  statusCode: number;
+  message: string;
 }
 
 export interface UserModel {

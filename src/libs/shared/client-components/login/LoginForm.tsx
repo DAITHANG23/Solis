@@ -12,6 +12,7 @@ import useNotification from "@/features/hooks/useNotification";
 import useTransMutation from "@/features/hooks/useTransMutation";
 import { authEndpoints } from "@/api/enpoints";
 import { useAuthStore } from "@/store/useAuthStore";
+import authService from "@/utils/authService";
 declare global {
   interface Window {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -31,12 +32,11 @@ export const GoogleLoginButton = () => {
         const accessTokenResponse = data.data.accessToken;
         const refreshTokenResponse = data.data.refreshToken;
 
-        const ttlSeconds = 60 * 60 * 24 * 30;
         if (accessTokenResponse && process.env.NODE_ENV !== "production") {
-          document.cookie = `access_token=${accessTokenResponse}; path=/; SameSite=Lax; Expires=${new Date(Date.now() + ttlSeconds * 1000)}`;
+          authService.setAccessToken(accessTokenResponse);
         }
         if (refreshTokenResponse && process.env.NODE_ENV !== "production") {
-          document.cookie = `refresh_token=${refreshTokenResponse}; path=/; SameSite=Lax; Expires=${new Date(Date.now() + ttlSeconds * 1000)}`;
+          authService.setRefreshToken(refreshTokenResponse);
         }
         setIsAuthenticated(true || !!accessTokenResponse);
         showSuccess("Login Success");

@@ -25,6 +25,16 @@ const authService = {
   getAccessToken: () => {
     return getJWTCookies("access_token") as string;
   },
+  // set access token and refresh token to cookie in develop env
+  setAccessToken: (token: string) => {
+    const ttlSeconds = 60 * 60 * 24 * 30;
+    document.cookie = `access_token=${token}; path=/; SameSite=Lax; Expires=${new Date(Date.now() + ttlSeconds * 1000)}`;
+  },
+
+  setRefreshToken: (token: string) => {
+    const ttlSeconds = 60 * 60 * 24 * 30;
+    document.cookie = `refresh_token=${token}; path=/; SameSite=Lax; Expires=${new Date(Date.now() + ttlSeconds * 1000)}`;
+  },
 };
 
 export default authService;
