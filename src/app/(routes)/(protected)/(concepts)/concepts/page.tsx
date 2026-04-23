@@ -1,5 +1,11 @@
+import { Concept } from "@/libs/shared/client-components/concepts";
+
 const Concepts = () => {
-  return <div>Concepts</div>;
+  return (
+    <div>
+      <Concept />
+    </div>
+  );
 };
 
 export default Concepts;
