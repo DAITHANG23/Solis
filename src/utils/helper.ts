@@ -1,3 +1,4 @@
+import { DEFAULT_CONCEPTS_LIST } from "@/constants";
 import { isEmpty } from "lodash";
 import { stringify } from "qs";
 
@@ -31,3 +32,7 @@ export function cleanEmptyFields(obj: Record<string, any>) {
 
   return newObj;
 }
+
+export const getConceptTypeLabel = (conceptType: string) => {
+  return DEFAULT_CONCEPTS_LIST.find((item) => item.value === conceptType)?.label;
+};

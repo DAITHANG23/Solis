@@ -38,6 +38,7 @@ export const StyledRow = styled(TableRow)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   transition: theme.transitions.create("background-color"),
   textAlign: "center",
+
   "& > .MuiTableCell-body:first-of-type": {
     position: "relative",
     "&:before": {
@@ -48,7 +49,7 @@ export const StyledRow = styled(TableRow)(({ theme }) => ({
       top: 0,
       bottom: 0,
       width: 4,
-      background: theme.palette.secondary.main,
+      background: theme.palette.primary.main,
       borderTopLeftRadius: 8,
       borderBottomLeftRadius: 8,
     },
@@ -94,7 +95,7 @@ export const RowSelectable = styled(TableRow)({
 // TableCell
 export const StyledCell = styled(TableCell)(({ theme }) => ({
   fontSize: 13,
-  padding: theme.spacing(2),
+  padding: theme.spacing(3),
   borderColor: theme.palette.grey[500],
   [theme.breakpoints.down("xs")]: {
     paddingLeft: theme.spacing(1),

@@ -16,7 +16,7 @@ const LoadingRow = ({ pageSize, columnCount }: LoadingRowProps) => {
           {[...Array(columnCount)].map((__, columnIndex) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <TableCell key={columnIndex}>
-              <Skeleton height={28} width="100%" />
+              <Skeleton height={28} width='100%' />
             </TableCell>
           ))}
         </TableRow>

@@ -1,8 +1,11 @@
+import { UserModel } from ".";
+
 export interface IConcept {
   name: string;
   description: string;
+  logoUrl: string;
   address: string;
-  conceptManager: string;
+  conceptManager: ManageConceptType;
   totalProfit: number;
   images: Array<string>;
   imageCover: string;
@@ -11,6 +14,8 @@ export interface IConcept {
   type: string;
   avgRatings: number;
   reviews: Array<string>;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Dish {
@@ -31,8 +36,10 @@ export interface GetAllConceptsResponse {
   data: {
     status: string;
     results: number;
-    data: {data: Array<IConcept>}
+    data: { data: Array<IConcept> };
   };
   statusCode: string;
-  message: string
+  message: string;
 }
+
+export interface ManageConceptType extends Omit<UserModel, "googleId"> {}

@@ -15,14 +15,13 @@ export const StyledTableRow = styled(TableRow)(({ theme }) => ({
     borderBottom: 0,
   },
   "& > .MuiTableCell-head::first-of-type": {
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
+    borderTopLeftRadius: "8px !important",
+    borderBottomLeftRadius: "8px !important",
     [theme.breakpoints.down("xs")]: {
       paddingLeft: theme.spacing(1),
     },
   },
   "& > .MuiTableCell-head:last-child": {
-    borderTopRightRadius: 8,
-    borderBottomRightRadius: 8,
+    borderTopRightRadius: "8px !important",
   },
 }));
