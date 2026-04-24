@@ -1,4 +1,4 @@
-import { TablePagination } from "@mui/material";
+import { TablePagination, styled } from "@mui/material";
 import clsx from "clsx";
 import { useCallback } from "react";
 
@@ -11,6 +11,14 @@ interface PaginationProps {
   totalItems: number;
   rowsPerPageOptions: Array<number>;
 }
+
+const StyledContainer = styled("div")(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  borderBottomLeftRadius: "8px !important",
+  borderBottomRightRadius: "8px !important",
+  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+  marginBottom: theme.spacing(12),
+}));
 
 export const Pagination = ({
   onChangePage,
@@ -29,7 +37,7 @@ export const Pagination = ({
     [onChangePage],
   );
   return (
-    <div className={clsx(paginationClass)} style={{ backgroundColor: "#FFF" }}>
+    <StyledContainer className={clsx(paginationClass)}>
       <TablePagination
         component='div'
         count={totalItems}
@@ -44,6 +52,6 @@ export const Pagination = ({
         }}
         rowsPerPageOptions={rowsPerPageOptions}
       />
-    </div>
+    </StyledContainer>
   );
 };

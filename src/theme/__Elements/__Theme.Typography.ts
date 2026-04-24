@@ -31,9 +31,7 @@ declare module "@mui/material/Typography" {
   }
 }
 
-const Typography: (palette: Palette) => TypographyVariantsOptions = (
-  palette,
-) => ({
+const Typography: (palette: Palette) => TypographyVariantsOptions = (palette) => ({
   h1: {
     fontStyle: "normal",
     fontWeight: 700,
@@ -99,10 +97,10 @@ const Typography: (palette: Palette) => TypographyVariantsOptions = (
   },
   bodyXXSM: {
     fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: "14px",
-    lineHeight: "18px",
-    letterSpacing: "-0.02em",
+    fontWeight: "bold",
+    fontSize: "12px",
+    lineHeight: "22px",
+    letterSpacing: "-0.01em",
   },
   bodyXSB: {
     fontStyle: "normal",

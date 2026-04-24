@@ -3,3 +3,4 @@ export const GET_CUSTOMER_KEY = "GetCustomer";
 export const GET_ALL_ORDERS_KEY = "GetAllOrders";
 export const GET_ORDER_KEY = "GetOrder";
 export const GET_PROFILE_KEY = "GetProfile";
+export const GET_ALL_CONCEPTS_KEY = "GetAllConcepts";
