@@ -1,12 +1,5 @@
 "use client";
-import {
-  Box,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { Box, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import MuiTable from "@mui/material/Table";
 import TableHead from "../TableHead";
 import isEmpty from "lodash/isEmpty";
@@ -83,25 +76,18 @@ export function Table<T extends object>({
 
   const visibleColumns = table.getAllLeafColumns();
 
-  const skeletonLength = isDesktopSize
-    ? visibleColumns.length
-    : visibleColumns.length - 1;
+  const skeletonLength = isDesktopSize ? visibleColumns.length : visibleColumns.length - 1;
 
   const renderNoDataElement = (customDataElement: React.ReactNode) => (
     <tr>
       <td colSpan={visibleColumns.length || 1}>
         <NoData>
           {customDataElement || (
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              flexDirection="column"
-            >
+            <Box display='flex' justifyContent='center' alignItems='center' flexDirection='column'>
               <Box marginBottom={1}>
                 <NoDataIcon />
               </Box>
-              <Typography variant="bodyS">No data</Typography>
+              <Typography variant='bodyS'>No data</Typography>
             </Box>
           )}
         </NoData>
@@ -110,7 +96,14 @@ export function Table<T extends object>({
   );
   return (
     <>
-      <TableContainer>
+      <TableContainer
+        sx={{
+          display: "block",
+          borderTopLeftRadius: "8px",
+          borderTopRightRadius: "8px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+        }}
+      >
         <MuiTable style={{ tableLayout: "fixed" }}>
           <TableHead
             className={headerClass}
@@ -118,15 +111,11 @@ export function Table<T extends object>({
             showSubComponent
           />
           <TableBody className={bodyClass}>
-            {isEmpty(table.getRowModel().rows) &&
-              !loading &&
-              renderNoDataElement(noDataElement)}
+            {isEmpty(table.getRowModel().rows) && !loading && renderNoDataElement(noDataElement)}
             {loading && (
               <LoadingRow
                 pageSize={pageSize}
-                columnCount={
-                  showSubComponent ? skeletonLength : visibleColumns.length
-                }
+                columnCount={showSubComponent ? skeletonLength : visibleColumns.length}
               />
             )}
             {!loading &&
@@ -135,8 +124,7 @@ export function Table<T extends object>({
                   <React.Fragment key={row.id}>
                     <StyledRow>
                       {row.getVisibleCells().map((cell, index) => {
-                        if (!isDesktopSize && cell.column.id === "expander")
-                          return null;
+                        if (!isDesktopSize && cell.column.id === "expander") return null;
 
                         const selectable = rowSelectable;
 
@@ -155,10 +143,7 @@ export function Table<T extends object>({
                               }
                             }}
                           >
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </StyledCell>
                         );
                       })}
@@ -167,7 +152,7 @@ export function Table<T extends object>({
                       <TableRow>
                         <TableCell
                           style={{ border: 0 }}
-                          padding="none"
+                          padding='none'
                           colSpan={visibleColumns.length}
                         >
                           <SubComponentContainer open={row.getIsExpanded()}>
